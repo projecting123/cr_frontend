@@ -1,4 +1,4 @@
-import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
+import { Directive, effect, ElementRef, inject, input, Renderer2, ViewContainerRef } from '@angular/core';
 import { FormService } from '../services/form.service';
 import { AuthService } from '../services/auth.service';
 
@@ -9,7 +9,7 @@ export class ButtonDirective {
   appButton = input()
   auth = inject(AuthService)
   fs = inject(FormService)
-  constructor(private el: ElementRef, private renderer: Renderer2) { 
+  constructor(private el: ElementRef, private renderer: Renderer2, private container: ViewContainerRef) { 
     effect(() => {
       if(this.auth.isSubmitting()){
         this.renderer.setProperty(this.el.nativeElement, 'disabled', true)

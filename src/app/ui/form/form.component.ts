@@ -8,13 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 import { FocusblurDirective } from '../../directives/focusblur.directive';
 import { ButtonDirective } from '../../directives/button.directive';
 import { AuthService } from '../../services/auth.service';
+import { FormInputTypeDirective } from '../../directives/formInputType.directive';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, MatIcon, NgIf, FocusblurDirective, ButtonDirective],
+  imports: [ReactiveFormsModule, MatIcon, NgIf, FocusblurDirective, ButtonDirective, FormInputTypeDirective],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
-  animations: [icon],
+  animations: [icon]
 })
 
 export class FormComponent {
@@ -22,6 +23,10 @@ export class FormComponent {
   auth = inject(AuthService)
   activeRoute = inject(ActivatedRoute)
   constructor() {
+
+  }
+
+  ngOnInit() {
     if (this.activeRoute.snapshot.url[0].path == 'signup') {
       this.fs.formData().reset()
       this.fs.formType.set('signup')

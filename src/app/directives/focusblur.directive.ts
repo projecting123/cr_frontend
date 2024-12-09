@@ -1,4 +1,4 @@
-import { Directive, ElementRef, inject, input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, inject, OnInit, Renderer2 } from '@angular/core';
 import { FormService } from '../services/form.service';
 
 @Directive({
@@ -9,6 +9,7 @@ export class FocusblurDirective implements OnInit {
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
+    // console.log(this.el.nativeElement.parentNode)
     this.renderer.listen(this.el.nativeElement, 'focus', (event: Event) => {
       const inputEl = event.target as HTMLInputElement
       const labelEl = inputEl.nextElementSibling as HTMLLabelElement

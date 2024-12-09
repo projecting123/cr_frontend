@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-size: 1rem;
@@ -8,7 +8,8 @@
     color: rgb(150, 207, 45);
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -16,20 +17,51 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.ng-star-inserted{
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.ng-star-inserted {
     animation: component 0.15s ease-in-out;
 }
 
-@keyframes component{
-    0%{
-        opacity: 0;
-        transform: scale(0.75);
-    }
-    100%{
-        opacity: 1;
-        transform: scale(1);
-    }
+@keyframes component {
+    0% {opacity: 0;transform: scale(0.75)}
+    100% {opacity: 1;transform: scale(1)}
+}
+
+.snackbar {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    animation: snackbar 0.2s ease-in-out;
+}
+
+.snackbar_hide{
+    animation: snackbar_hide 0.3s ease-in-out;
+}
+
+.snackbar p {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    align-self: center;
+}
+
+@keyframes snackbar {
+    0% { opacity: 0;transform: translateY(10px)}
+    100% {opacity: 1;transform: translateY(0px)}
+}
+@keyframes snackbar_hide {
+    0% {opacity: 1; transform: translateY(0px)}
+    100% {opacity: 0;transform: translateY(10px)}
 }

@@ -1,30 +1,38 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormService } from './form.service';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { UtilityService } from './utility.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService{
   router = inject(Router)
   fs = inject(FormService)
   utilService = inject(UtilityService)
   document = inject(DOCUMENT)
-  isAuthorized = signal(false)
+  platformId = inject(PLATFORM_ID)
+  isAuthorized = signal<boolean>(false)
   isSubmitting = signal(false)
   isEmailVerified = signal(false)
   constructor(private http: HttpClient) {
-
+    if(isPlatformBrowser(this.platformId)){
+      if(this.document.cookie.split('=')[0]){
+        this.isAuthorized.set(true)
+      }
+      else{
+        localStorage.removeItem('userInfo')
+      }
+    }
   }
-  
+
   signup() {
     this.isSubmitting.set(true)
     if (!navigator.onLine) {
       this.isSubmitting.set(false)
-      return this.utilService.openSnackBar('Internet not available.')
+      return this.utilService.openSnackBar("Internet isn't available.", "#FF2929", "#FFF")
     }
     const res = this.http.post('http://localhost:4000/auth/signup', { name: this.fs.formData().get('name')?.value, email: this.fs.formData().get('email')?.value, password: this.fs.formData().get('password')?.value }, { withCredentials: true })
     res.subscribe({
@@ -38,7 +46,7 @@ export class AuthService {
         this.fs.formData().reset()
         this.fs.removeFocusClasses()
         this.isSubmitting.set(false)
-        this.utilService.openSnackBar('Some error occurred')
+        this.utilService.openSnackBar('Some error occurred', "#FF2929", "#FFF")
       }
     })
   }
@@ -48,7 +56,7 @@ export class AuthService {
     this.isSubmitting.set(true)
     if (!navigator.onLine) {
       this.isSubmitting.set(false)
-      return this.utilService.openSnackBar('Internet not available.')
+      return this.utilService.openSnackBar("Internet isn't available", "#FF2929", "#FFF")
     }
     const res = this.http.post('http://localhost:4000/auth/login', { email: this.fs.formData().get('email')?.value, password: this.fs.formData().get('password')?.value }, { withCredentials: true })
     res.subscribe({
@@ -69,7 +77,7 @@ export class AuthService {
         this.fs.formData().reset()
         this.fs.removeFocusClasses()
         this.isSubmitting.set(false)
-        this.utilService.openSnackBar('Some error occurred')
+        this.utilService.openSnackBar('Some error occurred', "#FF2929", "#FFF")
       }
     })
   }
@@ -98,6 +106,8 @@ export class AuthService {
 
 
   removeUserInfo() {
-    if (!this.document.cookie.split('=')[0]) localStorage.removeItem('userInfo')
+    if(isPlatformBrowser(this.platformId)){
+      if (!this.document.cookie.split('=')[0]) localStorage.removeItem('userInfo')
+    }
   }
 }
