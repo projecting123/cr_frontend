@@ -7,7 +7,7 @@ import { NgIf } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { SettingsService } from '../../services/settings.service';
 @Component({
-  selector: 'app-header',
+  selector: 'cr-header',
   imports: [RouterLink, RouterLinkActive, MatIcon, MatTooltipModule, NgIf],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',

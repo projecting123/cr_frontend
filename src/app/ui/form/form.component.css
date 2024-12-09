@@ -1,9 +1,9 @@
-.STATUS_ICON,
+.status_icon,
 input {
     background-color: transparent
 }
 
-.SUBMIT_BUTTON_CONTAINER,
+.submit_btn_container,
 img {
     align-self: center
 }
@@ -18,7 +18,7 @@ img {
     width: 4rem
 }
 
-.FORM_CONTAINER {
+.form_container {
     display: flex;
     justify-content: center;
     min-height: 90vh;
@@ -36,12 +36,12 @@ form {
     background: var(--formBackgroundColor)
 }
 
-.LOGO_AND_HEADING {
+.logo_heading {
     display: flex;
     flex-direction: column
 }
 
-#HEADING_TEXT {
+#heading_text {
     text-align: center;
     font-family: "Roboto Slab", serif;
     font-weight: 400;
@@ -49,7 +49,7 @@ form {
     margin: 0
 }
 
-.INPUT_CONTAINER {
+.input_container {
     border: 1px solid;
     border-radius: 2px;
     position: relative;
@@ -58,7 +58,7 @@ form {
     transition: .1s linear
 }
 
-.STATUS_ICON {
+.status_icon {
     padding: 0 2px;
     display: inline-flex;
     color: green;
@@ -68,12 +68,12 @@ form {
     top: 9px
 }
 
-.STATUS_ICON.not_password {
+.status_icon.not_password {
     right: 10px;
     top: 10px
 }
 
-div.INPUT_CONTAINER:focus-within {
+div.input_container:focus-within {
     border: 1px solid #433878;
     box-shadow: 0 0 3px 1px #433878
 }
@@ -115,7 +115,7 @@ button {
     cursor: pointer
 }
 
-.SUBMIT_BUTTON_CONTAINER button {
+.submit_btn_container button {
     background-color: #433878;
     padding: 6px 10px;
     border-radius: 4px;
@@ -136,7 +136,7 @@ button {
     cursor: pointer
 }
 
-.SUBMIT_BUTTON_CONTAINER .BUTTON_ALLOWED:hover {
+.submit_btn_container .BUTTON_ALLOWED:hover {
     box-shadow: 0 0 4px #2e236c
 }
 

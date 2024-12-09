@@ -20,7 +20,7 @@ export class FormService {
     name: new FormControl("", [Validators.required, CustomValidator.name_space]),
     email: new FormControl("", [Validators.required,, CustomValidator.validateEmail]),
     password: new FormControl("", [Validators.required, Validators.minLength(6), CustomValidator.validatePassword]),
-    confirm_password: new FormControl("", [Validators.required, Validators.minLength(6), CustomValidator.validatePassword, CustomValidator.mustMatch2])
+    confirm_password: new FormControl("", [Validators.required, Validators.minLength(6), CustomValidator.validatePassword])
   }, { validators: CustomValidator.parentValidator })
 
   loginFormData = new FormGroup({

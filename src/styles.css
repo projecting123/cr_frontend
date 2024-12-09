@@ -4,6 +4,11 @@
     font-size: 1rem;
 }
 
+:root{
+    --formBackgroundColor: #D4EBF8;
+    --formBoxShadowColor: #1F509A
+}
+
 .active {
     color: rgb(150, 207, 45);
 }

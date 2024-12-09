@@ -4,7 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { UserInfo } from '../../../interfaces/auth';
 
 @Component({
-    selector: 'app-dashboard',
+    selector: 'cr-dashboard',
     imports: [],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css'

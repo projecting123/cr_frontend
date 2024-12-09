@@ -31,15 +31,13 @@ export class CustomValidator {
     static parentValidator(control: FormGroup): ValidationErrors | null {
         const password = control.get('password')?.value;
         const confirmPassword = control.get('confirm_password')?.value;
-        if (password !== confirmPassword) return { isnotMatchedPassword: true }
-        return null;
-    }
-
-    // checked by confirm password FormControl
-
-    static mustMatch2(control: AbstractControl): ValidationErrors | null {
-        const password = control.parent?.get("password")?.value
-        if (password !== control.value) return { isnotMatchedPassword: true }
+        if (password !== confirmPassword){
+            control.get('confirm_password')?.setErrors({ passwordMismatch: true})
+            return { passwordMismatch: true }
+        }
+        else if(password && confirmPassword && password == confirmPassword){
+            control.get('confirm_password')?.setErrors(null)
+        }
         return null;
     }
 }

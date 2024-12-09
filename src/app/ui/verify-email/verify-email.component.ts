@@ -3,7 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-verify-email',
+  selector: 'cr-verify-email',
   imports: [MatIcon],
   templateUrl: './verify-email.component.html',
   styleUrl: './verify-email.component.css'

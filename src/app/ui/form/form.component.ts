@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
@@ -9,13 +9,15 @@ import { FocusblurDirective } from '../../directives/focusblur.directive';
 import { ButtonDirective } from '../../directives/button.directive';
 import { AuthService } from '../../services/auth.service';
 import { FormInputTypeDirective } from '../../directives/formInputType.directive';
+import { EmailPasswordComponent } from "../../shared/email-password/email-password.component";
 
 @Component({
-  selector: 'app-form',
-  imports: [ReactiveFormsModule, MatIcon, NgIf, FocusblurDirective, ButtonDirective, FormInputTypeDirective],
+  selector: 'cr-form',
+  imports: [ReactiveFormsModule, MatIcon, NgIf, FocusblurDirective, ButtonDirective, FormInputTypeDirective, EmailPasswordComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
-  animations: [icon]
+  animations: [icon],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class FormComponent {
