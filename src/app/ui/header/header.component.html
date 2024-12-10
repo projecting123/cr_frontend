@@ -17,8 +17,8 @@
                         aria-label="Login">login</mat-icon></button></li>
 
             <li *ngIf="auth.isAuthorized()"><button @icon (click)="settings.toggleDarkMode()"
-                    [matTooltip]="settings.isDarkMode ? 'Dark' : 'Light'"><mat-icon>{{settings.isDarkMode ? "light_mode"
-                        : "dark_mode"}}</mat-icon></button></li>
+                    [matTooltip]="settings.isDarkMode ? 'Dark' : 'Light'"><mat-icon>{{settings.isDarkMode ? "dark_mode"
+                        : "light_mode"}}</mat-icon></button></li>
             <li *ngIf="auth.isAuthorized()"><button matTooltip="Profile"><mat-icon>person</mat-icon></button></li>
             <li *ngIf="auth.isAuthorized()"><button matTooltip="Log out"
                     (click)="auth.logout()"><mat-icon>logout</mat-icon></button></li>

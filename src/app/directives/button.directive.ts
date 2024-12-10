@@ -1,4 +1,4 @@
-import { Directive, effect, ElementRef, inject, input, Renderer2, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, inject, input, Renderer2 } from '@angular/core';
 import { FormService } from '../services/form.service';
 import { AuthService } from '../services/auth.service';
 
@@ -9,7 +9,7 @@ export class ButtonDirective {
   buttonRef = input()
   auth = inject(AuthService)
   fs = inject(FormService)
-  constructor(private el: ElementRef, private renderer: Renderer2, private container: ViewContainerRef) {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
 
   }
 
@@ -18,6 +18,7 @@ export class ButtonDirective {
       this.renderer.setProperty(this.el.nativeElement, 'disabled', this.fs.formData().invalid)
       this.renderer.setProperty(this.el.nativeElement, 'textContent', 'Submit')
       this.renderer.addClass(this.el.nativeElement, this.fs.formData().invalid ? 'button_disabled' : 'button_allowed')
+
       this.fs.formData().statusChanges.subscribe(newStatus => {
         this.renderer.setProperty(this.el.nativeElement, 'disabled', newStatus == 'INVALID' ? true : false)
         this.renderer.removeClass(this.el.nativeElement, newStatus == 'INVALID' ? 'button_allowed' : 'button_disabled')

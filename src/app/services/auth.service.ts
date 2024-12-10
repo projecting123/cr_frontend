@@ -17,7 +17,7 @@ export class AuthService{
   platformId = inject(PLATFORM_ID)
   isAuthorized = signal<boolean>(false)
   isEmailVerified = signal(false)
-  submittingEvent = new Subject()
+  submittingEvent = new Subject<boolean>()
   constructor(private http: HttpClient) {
     if(isPlatformBrowser(this.platformId)){
       if(this.document.cookie.split('=')[0]){

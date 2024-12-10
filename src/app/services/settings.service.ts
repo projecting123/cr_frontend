@@ -11,8 +11,9 @@ export class settings {
 
   toggleDarkMode() {
     if(isPlatformBrowser(this.platformId)){
-      localStorage.getItem('isDarkMode') == null && localStorage.setItem('isDarkMode', `${true}`)
-      localStorage.setItem('isDarkMode', `${!Boolean(localStorage.getItem('isDarkMode'))}`)
+      localStorage.getItem('isDarkMode') == null ? localStorage.setItem('isDarkMode', `true`) :
+      localStorage.getItem('isDarkMode') == 'false' ? localStorage.setItem('isDarkMode', `true`) :
+      localStorage.setItem('isDarkMode', `false`)
     }
   }
 
