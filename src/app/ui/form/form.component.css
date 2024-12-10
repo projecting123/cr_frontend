@@ -3,7 +3,7 @@ input {
     background-color: transparent
 }
 
-.submit_btn_container,
+.__submit_btn_container__,
 img {
     align-self: center
 }
@@ -18,7 +18,7 @@ img {
     width: 4rem
 }
 
-.form_container {
+.__form_container__ {
     display: flex;
     justify-content: center;
     min-height: 90vh;
@@ -49,7 +49,7 @@ form {
     margin: 0
 }
 
-.input_container {
+.__input_container__ {
     border: 1px solid;
     border-radius: 2px;
     position: relative;
@@ -73,7 +73,7 @@ form {
     top: 10px
 }
 
-div.input_container:focus-within {
+div.__input_container__:focus-within {
     border: 1px solid #433878;
     box-shadow: 0 0 3px 1px #433878
 }
@@ -115,7 +115,7 @@ button {
     cursor: pointer
 }
 
-.submit_btn_container button {
+.__submit_btn_container__ button {
     background-color: #433878;
     padding: 6px 10px;
     border-radius: 4px;
@@ -136,7 +136,7 @@ button {
     cursor: pointer
 }
 
-.submit_btn_container .button_allowed:hover {
+.__submit_btn_container__ .button_allowed:hover {
     box-shadow: 0 0 4px #2e236c
 }
 
@@ -149,7 +149,7 @@ button {
     background-color: transparent
 }
 
-.email_message {
+.__email_message__ {
     opacity: .7;
     font-size: 12px
 }
