@@ -126,17 +126,17 @@ button {
     letter-spacing: 1px
 }
 
-.BUTTON_DISABLED {
+.button_disabled {
     opacity: .5;
     cursor: not-allowed
 }
 
-.BUTTON_ALLOWED,
+.button_allowed,
 .VISIBILITY {
     cursor: pointer
 }
 
-.submit_btn_container .BUTTON_ALLOWED:hover {
+.submit_btn_container .button_allowed:hover {
     box-shadow: 0 0 4px #2e236c
 }
 
@@ -149,7 +149,7 @@ button {
     background-color: transparent
 }
 
-.EMAIL_MESSAGE {
+.email_message {
     opacity: .7;
     font-size: 12px
 }

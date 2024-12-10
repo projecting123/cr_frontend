@@ -25,5 +25,9 @@ export class FocusblurDirective implements OnInit {
         labelEl.classList.remove('FOCUSED_OR_FILLED_LABEL')
       }
     })
+
+    this.auth.submittingEvent.subscribe(value => {
+      this.renderer.setProperty(this.el.nativeElement, 'readOnly', value)
+    })
   }
 }

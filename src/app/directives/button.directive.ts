@@ -9,24 +9,27 @@ export class ButtonDirective {
   buttonRef = input()
   auth = inject(AuthService)
   fs = inject(FormService)
-  constructor(private el: ElementRef, private renderer: Renderer2, private container: ViewContainerRef) { 
-    effect(() => {
-      if(this.auth.isSubmitting()){
-        this.renderer.setProperty(this.el.nativeElement, 'disabled', true)
-        this.renderer.removeClass(this.el.nativeElement, 'BUTTON_ALLOWED')
-        this.renderer.addClass(this.el.nativeElement, 'BUTTON_DISABLED')
-      }
-    })
+  constructor(private el: ElementRef, private renderer: Renderer2, private container: ViewContainerRef) {
+
   }
 
   ngOnInit() {
     if (this.buttonRef() == 'SUBMIT_BTN') {
       this.renderer.setProperty(this.el.nativeElement, 'disabled', this.fs.formData().invalid)
-      this.renderer.addClass(this.el.nativeElement, this.fs.formData().invalid ? 'BUTTON_DISABLED' : 'BUTTON_ALLOWED')
+      this.renderer.setProperty(this.el.nativeElement, 'textContent', 'Submit')
+      this.renderer.addClass(this.el.nativeElement, this.fs.formData().invalid ? 'button_disabled' : 'button_allowed')
       this.fs.formData().statusChanges.subscribe(newStatus => {
         this.renderer.setProperty(this.el.nativeElement, 'disabled', newStatus == 'INVALID' ? true : false)
-        this.renderer.removeClass(this.el.nativeElement, newStatus == 'INVALID' ? 'BUTTON_ALLOWED' : 'BUTTON_DISABLED')
-        this.renderer.addClass(this.el.nativeElement, newStatus == 'INVALID' ? 'BUTTON_DISABLED' : 'BUTTON_ALLOWED')
+        this.renderer.removeClass(this.el.nativeElement, newStatus == 'INVALID' ? 'button_allowed' : 'button_disabled')
+        this.renderer.addClass(this.el.nativeElement, newStatus == 'INVALID' ? 'button_disabled' : 'button_allowed')
+      })
+
+
+      this.auth.submittingEvent.subscribe(value => {
+        value && this.renderer.setProperty(this.el.nativeElement, 'disabled', true)
+        value && this.renderer.removeClass(this.el.nativeElement, 'button_allowed')
+        value && this.renderer.addClass(this.el.nativeElement, 'button_disabled')
+        this.renderer.setProperty(this.el.nativeElement, 'textContent', value ? 'Please Wait' : 'Submit')
       })
     }
 
