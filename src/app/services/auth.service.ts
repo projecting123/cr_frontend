@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormService } from './form.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
@@ -103,7 +103,6 @@ export class AuthService{
     if (this.document.cookie.split('=')[0]) return JSON.parse(localStorage.getItem('userInfo')!)
     return null
   }
-
 
   removeUserInfo() {
     if(isPlatformBrowser(this.platformId)){

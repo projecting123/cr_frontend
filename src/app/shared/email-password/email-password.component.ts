@@ -3,8 +3,8 @@ import { MatIcon } from '@angular/material/icon';
 import { ButtonDirective } from '../../directives/button.directive';
 import { NgIf } from '@angular/common';
 import { FormService } from '../../services/form.service';
-import { FormInputTypeDirective } from '../../directives/formInputType.directive';
-import { FocusblurDirective } from '../../directives/focusblur.directive';
+import { FormInputTypeDirective } from '../../directives/inputcontainer.directive';
+import { FocusblurDirective } from '../../directives/inputref.directive';
 import { icon } from '../../animation/icon';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 

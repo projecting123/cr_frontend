@@ -1,11 +1,13 @@
 import { Directive, ElementRef, inject, OnInit, Renderer2 } from '@angular/core';
 import { FormService } from '../services/form.service';
+import { AuthService } from '../services/auth.service';
 
 @Directive({
-  selector: '[appFocusblur]'
+  selector: '[inputRef]'
 })
 export class FocusblurDirective implements OnInit {
   fs = inject(FormService)
+  auth = inject(AuthService)
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {

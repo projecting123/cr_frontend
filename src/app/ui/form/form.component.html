@@ -6,8 +6,8 @@
             <h1 id="heading_text">{{fs.formType() == 'signup' ? 'Create Account' : 'Login'}}</h1>
         </div>
 
-        <div class="input_container" *formInputType="'name'">
-            <input autocomplete="off" appFocusblur type="text" formControlName="name" aria-label="Name Input Field" name="name">
+        <div class="input_container" *inputContainerFor="'name'">
+            <input autocomplete="off" inputRef type="text" formControlName="name" aria-label="Name Input Field" name="name">
             <label htmlFor="name">Name</label>
             <div @icon class="status_icon not_password" *ngIf="fs.formData()?.get('name')?.valid">
                 <div><mat-icon>check_small</mat-icon></div>
@@ -16,18 +16,18 @@
 
         <crep-form [form]="fs.formData()"></crep-form>
 
-        <div class="input_container" *formInputType="'confirm_password'">
-            <input autocomplete="off" appFocusblur #cpassInput type="password" formControlName="confirm_password" aria-label="Confirm Password Input Field" name="confirm_password">
+        <div class="input_container" *inputContainerFor="'confirm_password'">
+            <input autocomplete="off" inputRef #cpassInput type="password" formControlName="confirm_password" aria-label="Confirm Password Input Field" name="confirm_password">
             <label htmlFor="confirm_password">Confirm Password</label>
             <div @icon class="status_icon" *ngIf="fs.formData().get('confirm_password')?.valid">
                 <div><mat-icon>check_small</mat-icon></div>
             </div>
-            <button [appButton]="cpassInput" @icon type="button" class="VISIBILITY"
+            <button tabindex="-1" [buttonRef]="cpassInput" @icon type="button" class="VISIBILITY"
                 *ngIf="fs.formData().get('confirm_password')?.value?.length > 0"><mat-icon>{{cpassInput.type == "password" ? "visibility" : "visibility_off"}}</mat-icon></button>
         </div>
 
         <div class="submit_btn_container">
-            <button appButton="SUBMIT_BTN" type="button">{{auth.isSubmitting() ? "Submitting" : "Submit"}}</button>
+            <button buttonRef="SUBMIT_BTN" type="button">{{auth.isSubmitting() ? "Submitting" : "Submit"}}</button>
         </div>
     </form>
     }

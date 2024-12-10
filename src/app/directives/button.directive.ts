@@ -3,10 +3,10 @@ import { FormService } from '../services/form.service';
 import { AuthService } from '../services/auth.service';
 
 @Directive({
-  selector: '[appButton]'
+  selector: '[buttonRef]'
 })
 export class ButtonDirective {
-  appButton = input()
+  buttonRef = input()
   auth = inject(AuthService)
   fs = inject(FormService)
   constructor(private el: ElementRef, private renderer: Renderer2, private container: ViewContainerRef) { 
@@ -20,7 +20,7 @@ export class ButtonDirective {
   }
 
   ngOnInit() {
-    if (this.appButton() == 'SUBMIT_BTN') {
+    if (this.buttonRef() == 'SUBMIT_BTN') {
       this.renderer.setProperty(this.el.nativeElement, 'disabled', this.fs.formData().invalid)
       this.renderer.addClass(this.el.nativeElement, this.fs.formData().invalid ? 'BUTTON_DISABLED' : 'BUTTON_ALLOWED')
       this.fs.formData().statusChanges.subscribe(newStatus => {
@@ -31,9 +31,9 @@ export class ButtonDirective {
     }
 
     this.renderer.listen(this.el.nativeElement, 'click', () => {
-      if (this.appButton() == 'SUBMIT_BTN') this.fs.formType() == 'signup' ? this.auth.signup() : this.auth.login()
+      if (this.buttonRef() == 'SUBMIT_BTN') this.fs.formType() == 'signup' ? this.auth.signup() : this.auth.login()
       else {
-        const inputEl = this.appButton() as HTMLInputElement
+        const inputEl = this.buttonRef() as HTMLInputElement
         inputEl.type = inputEl.type == "password" ? "text" : "password"
       }
     })

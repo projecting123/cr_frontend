@@ -5,10 +5,10 @@ import { MatIcon } from '@angular/material/icon';
 import { icon } from '../../animation/icon';
 import { FormService } from '../../services/form.service';
 import { ActivatedRoute } from '@angular/router';
-import { FocusblurDirective } from '../../directives/focusblur.directive';
+import { FocusblurDirective } from '../../directives/inputref.directive';
 import { ButtonDirective } from '../../directives/button.directive';
 import { AuthService } from '../../services/auth.service';
-import { FormInputTypeDirective } from '../../directives/formInputType.directive';
+import { FormInputTypeDirective } from '../../directives/inputcontainer.directive';
 import { EmailPasswordComponent } from "../../shared/email-password/email-password.component";
 
 @Component({
