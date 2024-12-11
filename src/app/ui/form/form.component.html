@@ -1,6 +1,6 @@
 <div class="__form_container__">
     @defer () {
-    <form action="" [formGroup]="fs.formData()">
+    <form class="form" action="" [formGroup]="fs.formData()">
         <div class="logo_heading">
             <img src="logo.ico" alt="Logo image">
             <h1 id="heading_text">{{fs.formType() == 'signup' ? 'Create Account' : 'Login'}}</h1>
@@ -26,14 +26,22 @@
                 *ngIf="fs.formData().get('confirm_password')?.value?.length > 0"><mat-icon>{{cpassInput.type == "password" ? "visibility" : "visibility_off"}}</mat-icon></button>
         </div>
 
+        <div class="__signup_login_helper_links__">
+            <p *ngIf="fs.formType() == 'signup'">Already have an account? <a routerLink="/login">Login</a></p>
+            <p *ngIf="fs.formType() == 'login'">Don't have an account? <a routerLink="/signup">Signup</a></p>
+        </div>
+
         <div class="__submit_btn_container__">
             <button buttonRef="SUBMIT_BTN" type="button"></button>
         </div>
     </form>
     }
-    @loading {
+    @loading (minimum 500ms) {
     <div>
         <p>Loading...</p>
     </div>
+    }
+    @error {
+        <p>Please refresh the page</p>
     }
 </div>

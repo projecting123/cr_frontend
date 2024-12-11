@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { EventEmitter, inject, Injectable, Output, PLATFORM_ID, signal } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormService } from './form.service';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { UtilityService } from './utility.service';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class AuthService{
   platformId = inject(PLATFORM_ID)
   isAuthorized = signal<boolean>(false)
   isEmailVerified = signal(false)
-  submittingEvent = new Subject<boolean>()
+  isSubmittingForm = new Subject<boolean>()
   constructor(private http: HttpClient) {
     if(isPlatformBrowser(this.platformId)){
       if(this.document.cookie.split('=')[0]){
@@ -30,9 +30,9 @@ export class AuthService{
   }
 
   signup() {
-    this.submittingEvent.next(true)
+    this.isSubmittingForm.next(true)
     if (!navigator.onLine) {
-      this.submittingEvent.next(false)
+      this.isSubmittingForm.next(false)
       return this.utilService.openSnackBar("Internet isn't available.", "#FF2929", "#FFF")
     }
     const res = this.http.post('http://localhost:4000/auth/signup', { name: this.fs.formData().get('name')?.value, email: this.fs.formData().get('email')?.value, password: this.fs.formData().get('password')?.value }, { withCredentials: true })
@@ -41,12 +41,12 @@ export class AuthService{
         this.fs.formData().reset()
         this.fs.removeFocusClasses()
         this.utilService.openSnackBar(res.message)
-        this.submittingEvent.next(false)
+        this.isSubmittingForm.next(false)
       },
       error: () => {
         this.fs.formData().reset()
         this.fs.removeFocusClasses()
-        this.submittingEvent.next(false)
+        this.isSubmittingForm.next(false)
         this.utilService.openSnackBar('Some error occurred', "#FF2929", "#FFF")
       }
     })
@@ -54,9 +54,9 @@ export class AuthService{
 
   // frontend tells backend, "I'll accept cookies or any such info from you" by withCredentials property in Angular.
   login() {
-    this.submittingEvent.next(true)
+    this.isSubmittingForm.next(true)
     if (!navigator.onLine) {
-      this.submittingEvent.next(false)
+      this.isSubmittingForm.next(false)
       return this.utilService.openSnackBar("Internet isn't available", "#FF2929", "#FFF")
     }
     const res = this.http.post('http://localhost:4000/auth/login', { email: this.fs.formData().get('email')?.value, password: this.fs.formData().get('password')?.value }, { withCredentials: true })
@@ -72,12 +72,12 @@ export class AuthService{
           this.fs.formData().reset()
           this.fs.removeFocusClasses()
         }
-        this.submittingEvent.next(false)
+        this.isSubmittingForm.next(false)
       },
       error: () => {
         this.fs.formData().reset()
         this.fs.removeFocusClasses()
-        this.submittingEvent.next(false)
+        this.isSubmittingForm.next(false)
         this.utilService.openSnackBar('Some error occurred', "#FF2929", "#FFF")
       }
     })

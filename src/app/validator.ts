@@ -10,9 +10,7 @@ export class CustomValidator {
 
     static validateEmail(control: AbstractControl): ValidationErrors | null {
         const controlValue = control.value as string
-        const totalSpaces = controlValue?.split(' ').length - 1
         const emailPattern = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
-        if(totalSpaces > 0) return { message: "Email can't contain any spaces" }
         if (controlValue?.length && !emailPattern.test(controlValue)) return { message : 'Enter a valid email' }
         return null;
     }
@@ -20,9 +18,7 @@ export class CustomValidator {
     // Checks password pattern
     static validatePassword(control: AbstractControl): ValidationErrors | null {
         const controlValue = control.value as string
-        const totalSpaces = controlValue?.split(' ').length - 1
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
-        if(totalSpaces > 0) return {message: "Password can't contain any spaces"}
         if (controlValue?.length > 0 && !passwordPattern.test(controlValue)) return { message: "Password must contain at least one uppercase and lowercase letter, one numeric value and one special character" };
         return null
     }

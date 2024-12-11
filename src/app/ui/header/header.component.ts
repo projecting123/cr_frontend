@@ -1,4 +1,4 @@
-import { Component, inject, Signal, viewChild } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip'
@@ -13,7 +13,6 @@ import { settings } from '../../services/settings.service';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  sidebar: Signal<any> = viewChild('sidebar');
   auth = inject(AuthService)
   settings = inject(settings)
   router = inject(Router)

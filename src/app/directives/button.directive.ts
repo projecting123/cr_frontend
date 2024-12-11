@@ -26,7 +26,7 @@ export class ButtonDirective {
       })
 
 
-      this.auth.submittingEvent.subscribe(value => {
+      this.auth.isSubmittingForm.subscribe(value => {
         value && this.renderer.setProperty(this.el.nativeElement, 'disabled', true)
         value && this.renderer.removeClass(this.el.nativeElement, 'button_allowed')
         value && this.renderer.addClass(this.el.nativeElement, 'button_disabled')

@@ -5,105 +5,75 @@ input {
 
 .__submit_btn_container__,
 img {
-    align-self: center
-}
-
-:host {
-    --formBackgroundColor: #D4EBF8;
-    --formBoxShadowColor: #1F509A
+    @apply self-center
 }
 
 img {
-    height: 3rem;
-    width: 4rem
+    @apply h-10 w-16
 }
 
 .__form_container__ {
-    display: flex;
-    justify-content: center;
-    min-height: 90vh;
-    align-items: center
+    @apply flex justify-center min-h-screen items-center
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 10px 20px;
-    width: 350px;
-    border-radius: 5px;
-    box-shadow: 0 0 4px 1px var(--formBoxShadowColor);
-    background: var(--formBackgroundColor)
+.form {
+    @apply flex flex-col gap-4 px-5 py-2 w-[23rem] rounded-md bg-sky-200;
+    box-shadow: 0 0 5px -1.6px #0A5EB0;
+}
+
+.__signup_login_helper_links__ {
+    @apply self-end
+}
+
+.__signup_login_helper_links__ p {
+    @apply text-[12px]
+}
+
+.__signup_login_helper_links__ a {
+    @apply text-[#0A5EB0] text-[12px]
 }
 
 .logo_heading {
-    display: flex;
-    flex-direction: column
+    @apply flex flex-col;
 }
 
 #heading_text {
-    text-align: center;
-    font-family: "Roboto Slab", serif;
-    font-weight: 400;
-    font-size: 2rem;
-    margin: 0
+    font-family: "Montserrat", sans-serif;
+    @apply text-center font-semibold text-3xl;
 }
 
 .__input_container__ {
-    border: 1px solid;
-    border-radius: 2px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    transition: .1s linear
+    @apply border border-black transition-all duration-[0.1s] ease-linear rounded-[0.2rem] relative flex items-center;
 }
 
 .status_icon {
-    padding: 0 2px;
-    display: inline-flex;
-    color: green;
-    position: absolute;
-    right: 40px;
-    z-index: 3;
-    top: 9px
+    @apply px-[2px] inline-flex text-green-600 absolute right-[40px] z-[3] top-[9px];
 }
 
 .status_icon.not_password {
-    right: 10px;
-    top: 10px
+    @apply top-[10px] right-[10px];
 }
 
 div.__input_container__:focus-within {
-    border: 1px solid #433878;
-    box-shadow: 0 0 3px 1px #433878
+    box-shadow: 0 0 3px 1px #433878;
+    @apply border-[1px] border-solid border-[#433878];
 }
 
 input {
-    outline: 0;
-    padding: 14px 12px;
-    flex-grow: 1;
-    position: relative;
-    z-index: 1;
-    caret-color: #136409;
-    border: none
+    @apply outline-none py-[13px] px-[12px] grow-[1] relative z-[1] caret-[#136409] border-none;
 }
 
 .VISIBILITY,
 label {
-    position: absolute;
-    padding: 0 4px
+    @apply absolute px-[4px];
 }
 
 label {
-    left: 10px;
-    cursor: text;
-    transition: .1s linear
+    @apply cursor-text select-none left-[10px] transition-all duration-[0.08s] ease-linear;
 }
 
 .FOCUSED_OR_FILLED_LABEL {
-    transform: translateY(-25px);
-    background-color: var(--formBackgroundColor);
-    font-size: 12px
+    @apply translate-y-[-27px] bg-sky-200 text-[12px]
 }
 
 input::-ms-reveal {
@@ -111,24 +81,15 @@ input::-ms-reveal {
 }
 
 button {
-    border: none;
-    cursor: pointer
+    @apply border-none cursor-pointer
 }
 
 .__submit_btn_container__ button {
-    background-color: #433878;
-    padding: 6px 10px;
-    border-radius: 4px;
-    color: #fff;
-    transition: .1s linear;
-    box-shadow: 0 0 4px #80c4e9;
-    border: none;
-    letter-spacing: 1px
+    @apply bg-[#433878] tracking-[1px] border-none shadow-[#80c4e9] transition-all duration-[0.1s] ease-linear py-[4px] px-[10px] rounded-[4px] text-white
 }
 
 .button_disabled {
-    opacity: .5;
-    cursor: not-allowed
+    @apply opacity-[0.5] cursor-not-allowed;
 }
 
 .button_allowed,
@@ -141,15 +102,9 @@ button {
 }
 
 .VISIBILITY {
-    right: 10px;
-    transition: .3s linear;
-    z-index: 2;
-    display: inline-flex;
-    border-radius: 4px;
-    background-color: transparent
+    @apply right-[10px] transition-all z-[2] inline-flex rounded-[4px] bg-transparent;
 }
 
 .__email_message__ {
-    opacity: .7;
-    font-size: 12px
+    @apply opacity-[0.7] text-[12px]
 }

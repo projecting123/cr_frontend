@@ -4,7 +4,7 @@ import { NgIf } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { icon } from '../../animation/icon';
 import { FormService } from '../../services/form.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FocusblurDirective } from '../../directives/inputref.directive';
 import { ButtonDirective } from '../../directives/button.directive';
 import { AuthService } from '../../services/auth.service';
@@ -13,7 +13,7 @@ import { EmailPasswordComponent } from "../../shared/email-password/email-passwo
 
 @Component({
   selector: 'cr-form',
-  imports: [ReactiveFormsModule, MatIcon, NgIf, FocusblurDirective, ButtonDirective, FormInputTypeDirective, EmailPasswordComponent],
+  imports: [ReactiveFormsModule, RouterModule, MatIcon, NgIf, FocusblurDirective, ButtonDirective, FormInputTypeDirective, EmailPasswordComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
   animations: [icon],
