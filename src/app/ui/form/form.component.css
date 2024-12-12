@@ -17,7 +17,7 @@ img {
 }
 
 .form {
-    @apply flex flex-col gap-4 px-5 py-2 w-[23rem] rounded-md bg-sky-200;
+    @apply flex flex-col gap-4 px-5 py-2 w-[25rem] rounded-md bg-sky-200;
     box-shadow: 0 0 5px -1.6px #0A5EB0;
 }
 
@@ -60,20 +60,20 @@ div.__input_container__:focus-within {
 }
 
 input {
-    @apply outline-none py-[13px] px-[12px] grow-[1] relative z-[1] caret-[#136409] border-none;
+    @apply outline-none py-[8px] px-[8px] grow-[1] relative z-[1] caret-[#136409] border-none;
 }
 
 .VISIBILITY,
 label {
-    @apply absolute px-[4px];
+    @apply absolute px-[2px];
 }
 
 label {
-    @apply cursor-text select-none left-[10px] transition-all duration-[0.08s] ease-linear;
+    @apply cursor-text select-none left-[6px] transition-all duration-[0.08s] ease-linear;
 }
 
 .FOCUSED_OR_FILLED_LABEL {
-    @apply translate-y-[-27px] bg-sky-200 text-[12px]
+    @apply translate-y-[-21px] bg-sky-200 text-[12px]
 }
 
 input::-ms-reveal {
@@ -107,4 +107,26 @@ button {
 
 .__email_message__ {
     @apply opacity-[0.7] text-[12px]
+}
+
+
+/* media queries */
+
+@media screen and (min-width: 600px) {
+    input {
+        @apply py-[9px]
+    }
+    .FOCUSED_OR_FILLED_LABEL{
+        @apply translate-y-[-23px]
+    }
+}
+
+@media screen and (min-width: 1024px){
+    input{
+        @apply py-[12px]
+    }
+
+    .FOCUSED_OR_FILLED_LABEL{
+        @apply translate-y-[-24px]
+    }
 }

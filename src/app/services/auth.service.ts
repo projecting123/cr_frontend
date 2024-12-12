@@ -6,6 +6,9 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { UtilityService } from './utility.service';
 import { Subject } from 'rxjs';
 
+/**
+ * The main authentication service by which all auth related tasks are performed in this application.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +32,9 @@ export class AuthService{
     }
   }
 
+  /**
+   * Signup the user to the application
+   */
   signup() {
     this.isSubmittingForm.next(true)
     if (!navigator.onLine) {
@@ -53,6 +59,9 @@ export class AuthService{
   }
 
   // frontend tells backend, "I'll accept cookies or any such info from you" by withCredentials property in Angular.
+  /**
+   * Login the user to the application
+   */
   login() {
     this.isSubmittingForm.next(true)
     if (!navigator.onLine) {
@@ -83,6 +92,9 @@ export class AuthService{
     })
   }
 
+  /**
+   * Logout the user from the application
+   */
   logout() {
     const response = this.http.get('http://localhost:4000/auth/logout', { withCredentials: true })
     response.subscribe(() => {
@@ -92,19 +104,36 @@ export class AuthService{
     })
   }
 
+  /**
+   * 
+   * @param userId Id of the user for which email is to be verified.
+   * @returns Observable
+   */
   verifyEmail(userId: string) {
     return this.http.post('http://localhost:4000/auth/send-email', { userId: userId }, { withCredentials: true })
   }
 
+  /**
+   * 
+   * @param email Email of the user for which email is to be sent
+   * @returns observable
+   */
   sendVerificationEmail(email: string) {
     return this.http.post('http://localhost:4000/auth/send-verification-email', { email: email }, { withCredentials: true })
   }
 
+  /**
+   * 
+   * @returns user info in JSON format or null
+   */
   getUserInfo() {
     if (this.document.cookie.split('=')[0]) return JSON.parse(localStorage.getItem('userInfo')!)
     return null
   }
 
+  /**
+   * This function removes user info from localStorage once the user is logged out.
+   */
   removeUserInfo() {
     if(isPlatformBrowser(this.platformId)){
       if (!this.document.cookie.split('=')[0]) localStorage.removeItem('userInfo')

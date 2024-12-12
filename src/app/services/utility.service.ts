@@ -1,6 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { inject, Injectable } from '@angular/core';
 
+/**
+ * The main utility service by which all utility related tasks are performed in this application.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +13,12 @@ export class UtilityService {
     
   }
 
+  /**
+   * This function opens the snackbar in bottom of the document
+   * @param message Snackbar message
+   * @param textColor Text color of the snackbar message text
+   * @param backgroundColor Background color of the snackbar
+   */
   openSnackBar(message: string, textColor: string = '#1F509A', backgroundColor: string = '#D4EBF8') {
     const div = this.document.createElement("div");
     const p = this.document.createElement("p");

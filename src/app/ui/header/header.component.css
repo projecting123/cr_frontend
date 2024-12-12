@@ -1,80 +1,47 @@
 .header{
-    display: flex;
-    justify-content: space-between;
-    height: 4rem;
-    align-items: center;
-    padding: 0 2rem;
-    position: relative;
-    background: #81BFDA;
-    box-shadow: 0 0 5px 1px #B1F0F7;
+    @apply flex justify-between h-16 items-center px-8 relative bg-[#81BFDA]
 }
 
 img{
-    height: 2rem;
-    width: 2rem;
+    @apply h-8 w-8
 }
 
 .rightNav{
-    display: flex;
-    gap: 0.5rem;
+    @apply flex gap-[0.5rem]
 }
 
 .leftNav{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+    @apply flex gap-4 items-center
 }
 
 .sidebar{
-    position: absolute;
-    background-color: #B1F0F7;
-    position: fixed;
-    width: 70vw;
-    inset: 0;
-    z-index: 2;
-    min-height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    transform: translateX(-100%);
-    transition: all 0.2s ease-in-out;
+    @apply bg-[#B1F0F7] fixed w-[70vw] inset-0 z-[2] min-h-screen flex justify-between -translate-x-full transition-all duration-[0.2s] ease-in-out;
 }
 
 .link_container{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 0.2rem;
-    padding-top: 10px;
+    @apply flex flex-col items-start gap-[0.2rem] pt-[10px]
 }
 
 .link_container li{
-    list-style: none;
-    margin-left: 10px;
+    @apply list-none ml-[10px]
 }
 
 .link_container li a{
-    color: black;
     text-decoration: none;
+    @apply text-black;
 }
 
 .rightNav li{
-    list-style: none;
+    @apply list-none;
 }
 
 
 .leftNav button{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+    @apply border-none bg-transparent cursor-pointer
 }
 
 .rightNav button{
-    display: flex;
-    padding: 4px 5px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    background-color: #fff;
+    @apply flex py-[4px] px-[5px] rounded-[5px] border-none cursor-pointer bg-transparent
 }
 
 button:hover{
@@ -82,13 +49,8 @@ button:hover{
 }
 
 .sidebar button{
-    color: black;
-    border: none;
     background-color: rgba(0, 0, 0, 0);
-    align-self: start;
-    padding-right: 0.5rem;
-    padding-top: 10px;
-    cursor: pointer;
+    @apply text-black border-none self-start pr-2 pt-[10px] cursor-pointer
 }
 
 @media (min-width: 600px){

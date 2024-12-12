@@ -4,28 +4,21 @@
 
 h1 {
     font-family: "Montserrat", sans-serif;
-    animation: heading 2s infinite
 }
 
 .heading {
-    @apply text-3xl border-2 border-blue-700 font-bold drop-shadow-lg text-center;
+    @apply text-4xl font-bold drop-shadow-lg text-center;
 }
 
 .small {
     @apply text-center w-full block
 }
 
-
-@keyframes heading {
-    0% {
-        @apply text-green-400;
-    }
-
-    50% {
-        @apply text-pink-600
-    }
-
-    100% {
-        @apply text-fuchsia-600
-    }
+.__highlight_btn_container__{
+    @apply flex items-center justify-between gap-2
 }
+
+.__highlight_btn_container__ button{
+    @apply border relative overflow-hidden px-2 py-1 rounded-md bg-[#074799] text-white
+}
+

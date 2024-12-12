@@ -1,4 +1,4 @@
-import { Directive, ElementRef, inject, input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, inject, input, InputSignal, Renderer2 } from '@angular/core';
 import { FormService } from '../services/form.service';
 import { AuthService } from '../services/auth.service';
 
@@ -6,7 +6,7 @@ import { AuthService } from '../services/auth.service';
   selector: '[buttonRef]'
 })
 export class ButtonDirective {
-  buttonRef = input()
+  buttonRef: InputSignal<HTMLInputElement | string> = input()
   auth = inject(AuthService)
   fs = inject(FormService)
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -14,6 +14,7 @@ export class ButtonDirective {
   }
 
   ngOnInit() {
+    // Functionality for submit buttons
     if (this.buttonRef() == 'SUBMIT_BTN') {
       this.renderer.setProperty(this.el.nativeElement, 'disabled', this.fs.formData().invalid)
       this.renderer.setProperty(this.el.nativeElement, 'textContent', 'Submit')
@@ -32,14 +33,44 @@ export class ButtonDirective {
         value && this.renderer.addClass(this.el.nativeElement, 'button_disabled')
         this.renderer.setProperty(this.el.nativeElement, 'textContent', value ? 'Please Wait' : 'Submit')
       })
+
+      this.renderer.listen(this.el.nativeElement, 'click', (event: MouseEvent) => {
+        this.fs.formType() == 'signup' ? this.auth.signup() : this.auth.login()
+      })
     }
 
-    this.renderer.listen(this.el.nativeElement, 'click', () => {
-      if (this.buttonRef() == 'SUBMIT_BTN') this.fs.formType() == 'signup' ? this.auth.signup() : this.auth.login()
-      else {
-        const inputEl = this.buttonRef() as HTMLInputElement
-        inputEl.type = inputEl.type == "password" ? "text" : "password"
-      }
+    // Functionality for toggle password showable
+    this.buttonRef() instanceof HTMLInputElement && this.renderer.listen(this.el.nativeElement, 'click', () => {
+      const inputEl = this.buttonRef() as HTMLInputElement
+      inputEl.type = inputEl.type == "password" ? "text" : "password"
     })
+
+    // Ripple button functionality
+    if (this.buttonRef() == 'ripple_btn') {
+      this.renderer.listen(this.el.nativeElement, 'mousedown', (event: MouseEvent) => {
+        this.makeButtonRipple(event)
+      })
+    }
+  }
+
+
+
+  /**
+   * Creates a ripple effect on the button where the user clicked.
+   * @param event The MouseEvent that triggered the click event.
+   */
+  makeButtonRipple(event: MouseEvent) {
+    const buttonEl = event.target as HTMLButtonElement
+      const buttonRect = buttonEl.getBoundingClientRect()
+      const x = event.clientX - buttonRect.left
+      const y = event.clientY - buttonRect.top
+      const ripple = this.renderer.createElement('span')
+      this.renderer.addClass(ripple, 'ripple')
+      this.renderer.setStyle(ripple, 'left', `${x}px`)
+      this.renderer.setStyle(ripple, 'top', `${y}px`)
+      this.renderer.appendChild(buttonEl, ripple)
+      setTimeout(() => {
+        this.renderer.removeChild(buttonEl, ripple)
+      }, 600)
   }
 }

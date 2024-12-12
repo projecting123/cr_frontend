@@ -5,7 +5,7 @@ import { MatTooltipModule } from '@angular/material/tooltip'
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
-import { settings } from '../../services/settings.service';
+import { SettingsService } from '../../services/settings.service';
 @Component({
   selector: 'cr-header',
   imports: [RouterLink, RouterLinkActive, MatIcon, MatTooltipModule, NgIf],
@@ -14,7 +14,7 @@ import { settings } from '../../services/settings.service';
 })
 export class HeaderComponent {
   auth = inject(AuthService)
-  settings = inject(settings)
+  settings = inject(SettingsService)
   router = inject(Router)
   constructor() {
   }

@@ -3,28 +3,16 @@
 @tailwind utilities;
 
 * {
-    margin: 0;
-    padding: 0;
-    font-size: 1rem;
+    @apply m-0 p-0
 }
 
-:root{
+:root {
     --formBackgroundColor: #D4EBF8;
     --formBoxShadowColor: #1F509A
 }
 
 .active {
-    color: rgb(150, 207, 45);
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    @apply text-[#F0BB78];
 }
 
 html,
@@ -43,34 +31,71 @@ body {
 }
 
 @keyframes component {
-    0% {opacity: 0;transform: scale(0.75)}
-    100% {opacity: 1;transform: scale(1)}
+    0% {
+        opacity: 0;
+        transform: scale(0.75)
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
 }
 
 .snackbar {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    position: fixed;
-    bottom: 20px;
     animation: snackbar 0.2s ease-in-out;
+    @apply flex w-full justify-center fixed bottom-[20px]
 }
 
-.snackbar_hide{
+.snackbar_hide {
     animation: snackbar_hide 0.3s ease-in-out;
 }
 
 .snackbar p {
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    align-self: center;
+    @apply py-2 px-4 rounded-[5px] self-center
 }
 
+
 @keyframes snackbar {
-    0% { opacity: 0;transform: translateY(10px)}
-    100% {opacity: 1;transform: translateY(0px)}
+    0% {
+        opacity: 0;
+        transform: translateY(10px)
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translateY(0px)
+    }
 }
+
 @keyframes snackbar_hide {
-    0% {opacity: 1; transform: translateY(0px)}
-    100% {opacity: 0;transform: translateY(10px)}
+    0% {
+        opacity: 1;
+        transform: translateY(0px)
+    }
+    
+    100% {
+        opacity: 0;
+        transform: translateY(10px)
+    }
+}
+
+/* ripple effect */
+.ripple {
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.6;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+    100% {
+        transform: scale(100);
+        opacity: 0;
+    }
 }

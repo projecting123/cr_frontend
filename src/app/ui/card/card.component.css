@@ -1,0 +1,19 @@
+:host{
+    @apply p-4
+}
+
+.__card_container__{
+    box-shadow: 0 0 4px 2px #dad726;
+    min-width: min-content;
+    padding: 0.5rem 1rem;
+    max-width: 500px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.__card_container__:hover{
+    box-shadow: 0 0 6px 4px #81BFDA;
+}
