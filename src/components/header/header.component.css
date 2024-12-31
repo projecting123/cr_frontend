@@ -1,0 +1,28 @@
+:host{
+    display: flex;
+    justify-content: space-between;
+    background-color: #3F8CD7;
+    height: 4rem;
+    padding: 0 2rem;
+    align-items: center;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.__left_nav__{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.__right_nav__{
+    display: flex;
+    gap: 1rem;
+}
+
+.active_link{
+    color: #3D3BF3;
+}

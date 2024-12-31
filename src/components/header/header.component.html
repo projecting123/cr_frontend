@@ -1,0 +1,45 @@
+<div class="__left_nav__">
+  <div class="__logo__container__">
+    <a [routerLink]="auth.isAuthorizedSubject.value ? '/dashboard' : '/'" aria-label="Website Logo"
+      ><img src="/favicon.ico" alt="Website Logo" class="__logo__"
+    /></a>
+  </div>
+  <div>
+    <a
+      aria-label="Courses page"
+      routerLink="/courses"
+      routerLinkActive="active_link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Courses</a
+    >
+  </div>
+</div>
+
+<div class="__right_nav__">
+  @if (!isAuthorized()) {
+  <div>
+    <a
+      aria-label="Signup page"
+      routerLink="/signup"
+      routerLinkActive="active_link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Signup</a
+    >
+  </div>
+
+  <div>
+    <a
+      aria-label="Login page"
+      routerLink="/login"
+      routerLinkActive="active_link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Login
+    </a>
+  </div>
+  } @if (isAuthorized()) {
+  <div>
+    <button type="button" (click)="logout()" navButton>Logout</button>
+  </div>
+  }
+</div>

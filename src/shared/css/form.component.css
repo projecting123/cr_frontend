@@ -1,0 +1,85 @@
+.__form_container__ {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#__form_text__{
+    font-size: 1.6rem;
+    color: var(--label_color);
+    opacity: 0.6;
+}
+
+form{
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    background-color: var(--form_background_color);
+    padding: 1rem 0;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 2px var(--form_shadow_color);
+    transition: all 0.2s ease-in-out;
+}
+
+button{
+    position: relative;
+    padding: 0.5rem 1rem;
+    border: none;
+    overflow: hidden;
+    outline: none;
+    background-color: var(--button_color);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.__form_control_container__{
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 1px solid;
+    border-radius: 4px;
+    width: 90%;
+}
+
+.__form_control_container__ label{
+    position: absolute;
+    left: var(--label_left_padding);
+    background-color: var(--form_background_color);
+    z-index: 1;
+    transition: all 0.15s ease-in-out;
+}
+
+input{
+    border: none;
+    outline: none;
+    padding: var(--input_field_padding);
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    background-color: transparent;
+}
+
+.focused{
+    transform: translateY(calc(var(--input_label_top_padding) * -1.7));
+    font-size: 0.8rem;
+}
+
+.__formcontrol_status__{
+    position: relative;
+    padding: 0 0.2rem;
+    right: 0.4rem;
+}
+
+.__input_and_label_container__{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    flex: 1;
+}

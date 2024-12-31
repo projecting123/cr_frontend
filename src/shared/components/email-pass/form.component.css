@@ -1,0 +1,7 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: var(--input_field_gap);
+    align-items: center;
+}

@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+:root{
+    --input_label_top_padding: 0.8rem;
+    --input_field_padding: var(--input_label_top_padding) 0.5rem;
+    --input_field_gap: 1rem;
+    --label_color: rgb(52 58 64);
+    --label_left_padding: 0.5rem;
+    --form_background_color: rgb(179, 200, 207);
+    --form_shadow_color: rgb(30, 103, 177);
+    --form_button_color: rgb(30, 103, 177);
+    --navbar_button_color: rgba(0, 0, 0, 0.1);
+}
+
+
+.disabled_btn{
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.ripple{
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    transform: scale(0);
+    animation: ripple 0.5s linear;
+}
+
+@keyframes ripple{
+    to{
+        transform: scale(100);
+        opacity: 0;
+    }
+}
+
+.snackbar{
+    position: fixed;
+    bottom: 1rem;
+    text-align: center;
+    padding: 0.5rem 0.8rem;
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+    animation: snackbar 0.2s ease-in-out;
+}
+
+@keyframes snackbar{
+    from{
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.snackbar_hide{
+    animation: snackbar_hide 0.5s ease-in-out;
+}
+
+@keyframes snackbar_hide {
+    to{
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
