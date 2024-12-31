@@ -51,9 +51,6 @@ export class AuthService {
       return of(true);
     }
 
-    if (this.isAuthorizedSubject.value !== null) {
-      return this.isAuthorizedSubject.asObservable();
-    }
     if (!this.getAuthToken_SSR()) {
       this.isAuthorizedSubject.next(false);
       return of(false);
