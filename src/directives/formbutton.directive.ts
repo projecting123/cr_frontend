@@ -20,7 +20,6 @@ export class FormButtonDirective implements OnInit, OnDestroy{
   ) as ElementRef<HTMLButtonElement>;
   private readonly bs = inject(ButtonService);
   private subscription: Subscription = new Subscription();
-  private rippleTimeout!: NodeJS.Timeout;
 
   constructor() {
     effect(() => {
@@ -35,7 +34,6 @@ export class FormButtonDirective implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.bs.setButtonColor(this.buttonEl.nativeElement, 'form');
     const statusSubscription = this.fs
       .currentFormFields()
       .statusChanges.subscribe((status) => {
@@ -47,7 +45,6 @@ export class FormButtonDirective implements OnInit, OnDestroy{
 
     const formSubmit = fromEvent(this.buttonEl.nativeElement, 'click');
     const formSubmitSubscription = formSubmit.subscribe((event: any) => {
-      this.bs.makeRippleEffect(event);
       if (this.fs.formType() === 'signup') {
         const signupSubscription = this.fs
           .signup()
@@ -66,7 +63,6 @@ export class FormButtonDirective implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-    clearTimeout(this.rippleTimeout);
     this.subscription.unsubscribe();
   }
 }

@@ -38,8 +38,6 @@
     </a>
   </div>
   } @if (isAuthorized()) {
-  <div>
-    <button type="button" (click)="logout()" navButton>Logout</button>
-  </div>
+  <div><a (click)="logout()" navLink>Logout</a></div>
   }
 </div>

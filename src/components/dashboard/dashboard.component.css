@@ -1,0 +1,11 @@
+:host{
+    position: relative;
+}
+.__dashboard__{
+    display: flex;
+    flex-direction: column;
+}
+
+sidebar{
+    grid-column: 1/3;
+}

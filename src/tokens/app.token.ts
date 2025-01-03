@@ -1,4 +1,3 @@
-// create an injection token
 import { DOCUMENT } from '@angular/common';
 import { inject, InjectionToken, PLATFORM_ID, REQUEST } from '@angular/core';
 
@@ -23,6 +22,12 @@ export const CR_APP_CONFIG = new InjectionToken('app.config', {
           ?.split('=')[1];
         return value ? value : undefined;
       }
-    return { isServer, documentObj, requestObj, findCookieFromBrowser };
+
+    return {
+      isServer,
+      documentObj,
+      requestObj,
+      findCookieFromBrowser
+    };
   },
 });

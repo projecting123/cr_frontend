@@ -13,6 +13,10 @@ export const routes: Routes = [
         loadComponent: () => import('../components/about/about.component').then(m => m.AboutComponent)
     },
     {
+        path: 'courses',
+        loadComponent: () => import('../components/courses/courses.component').then(m => m.CoursesComponent),
+    },
+    {
         path: 'login',
         loadComponent: () => import('../components/login/login.component').then(m => m.LoginComponent),
         canActivate: [routeGuard]
@@ -26,7 +30,25 @@ export const routes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('../components/dashboard/dashboard.component').then(m => m.DashboardComponent),
         canActivate: [routeGuard],
-        resolve: {auth: authResolver}
+        resolve: {auth: authResolver},
+        children: [
+            {
+                path: 'courses',
+                loadComponent: () => import('../components/courses/courses.component').then(m => m.CoursesComponent),
+            },
+            {
+                path: 'quiz',
+                loadComponent: () => import('../components/quiz/quiz.component').then(m => m.QuizComponent),
+            },
+            {
+                path: 'notification',
+                loadComponent: () => import('../components/notification/notification.component').then(m => m.NotificationComponent),
+            },
+            {
+                path: 'materials',
+                loadComponent: () => import('../components/materials/materials.component').then(m => m.MaterialsComponent),
+            }
+        ]
     },
     {
         path: '**',

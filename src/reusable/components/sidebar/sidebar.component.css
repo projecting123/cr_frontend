@@ -1,0 +1,31 @@
+:host{
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(5, 118, 138, 0.3);
+    width: 200px;
+    height: calc(100vh - 6rem);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.__top_items__{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.__top_items_container__{
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+button{
+    color: white;
+}
+
+:host.closed{
+    transform: translateX(-88%);
+}

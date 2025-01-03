@@ -2,7 +2,7 @@ import { Component, inject, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormService } from '../../services/form.service';
 import { Subscription } from 'rxjs';
-import { FormComponent } from '../../shared/components/email-pass/form.componet';
+import { FormComponent } from '../../reusable/components/email-pass/form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormButtonDirective } from '../../directives/formbutton.directive';
 
