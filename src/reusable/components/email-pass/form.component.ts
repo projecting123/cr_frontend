@@ -3,12 +3,11 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputDirective } from '../../../directives/input.directive';
 
 @Component({
-    selector: 'ep-form',
-    imports: [ReactiveFormsModule, InputDirective],
-    templateUrl: './form.component.html',
-    styleUrls: ['./form.component.css']
+  selector: 'ep-form',
+  imports: [ReactiveFormsModule, InputDirective],
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-    @Input() form!: FormGroup<any>
-    
+  @Input() form!: FormGroup<any>;
 }

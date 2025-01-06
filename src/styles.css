@@ -17,9 +17,8 @@ body{
     --label_color: rgb(52 58 64);
     --label_left_padding: 0.5rem;
     --form_background_color: rgb(179, 200, 207);
-    --form_shadow_color: rgb(30, 103, 177);
     --form_button_color: rgb(30, 103, 177);
-    --navbar_button_color: rgba(0, 0, 0, 0.1);
+    --dashboard_color: rgb(79 113 214 / 64%);
 }
 
 a{
@@ -34,6 +33,10 @@ a{
 button{
     position: relative;
     z-index: 1;
+}
+
+.active_link{
+    background-color: rgba(0, 92, 187, 0.15);
 }
 
 .snackbar{

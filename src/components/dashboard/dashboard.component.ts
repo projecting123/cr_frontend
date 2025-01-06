@@ -1,37 +1,23 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthUserInfo } from '../../interfaces/auth';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { SidebarComponent } from '../../reusable/components/sidebar/sidebar.component';
 import { CR_APP_CONFIG } from '../../tokens/app.token';
-import { SidebarComponent } from "../../reusable/components/sidebar/sidebar.component";
+import { firstValueFrom } from 'rxjs';
+import { TransferStateService } from '../../services/transferstate.service';
 @Component({
   selector: 'cr-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  imports: [SidebarComponent],
+  imports: [SidebarComponent, RouterOutlet],
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly app = inject(CR_APP_CONFIG);
-  readonly authUserInfo = signal<null | AuthUserInfo>(null);
-  private readonly subscription: Subscription = new Subscription();
-  ngOnInit(): void {
-    const userInfoSubscription = this.route.data.subscribe((data) => {
-      if (this.app.isServer) this.authUserInfo.set(data['auth']['user']);
-      else {
-        if (!localStorage.getItem('userInfo'))
-          localStorage.setItem(
-            'userInfo',
-            JSON.stringify(data['auth']['user'])
-          );
-        else
-          this.authUserInfo.set(JSON.parse(localStorage.getItem('userInfo')!));
-      }
-    });
-    this.subscription.add(userInfoSubscription);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  readonly ts = inject(TransferStateService);
+  async ngOnInit() {
+    if (this.app.isServer) {
+      const res = await firstValueFrom(this.route.data);
+      this.ts.setUser(this.ts.authUserInfoKey, res['auth']);
+    }
   }
 }

@@ -3,7 +3,9 @@
         <div id="__form_text__">
             <h2>Login</h2>
         </div>
-        <ep-form [form]="fs.currentFormFields()"></ep-form>
+        @defer (hydrate on hover) {
+            <ep-form [form]="fs.currentFormFields()"></ep-form>
+        }
         <button type="button" formButton>Login</button>
     </form>
 </div>

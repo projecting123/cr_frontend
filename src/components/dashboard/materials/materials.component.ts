@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'materials',
+    selector: 'cr-materials',
     templateUrl: './materials.component.html',
     styleUrls: ['./materials.component.css'],
 })
-export class MaterialsComponent {}
+export class MaterialsPage {}

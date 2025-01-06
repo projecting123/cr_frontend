@@ -1,9 +1,8 @@
-// create a notification component
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'notification',
+    selector: 'cr-notification',
     templateUrl: './notification.component.html',
     styleUrls: ['./notification.component.css'],
 })
-export class NotificationComponent {}
+export class NotificationPage {}

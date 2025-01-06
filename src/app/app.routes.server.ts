@@ -19,7 +19,31 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'dashboard',
-    renderMode: RenderMode.Server
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'dashboard/courses',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'dashboard/quiz',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'dashboard/notification',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'dashboard/materials',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'dashboard/settings',
+    renderMode: RenderMode.Server,
+  },
+  {
+    path: 'dashboard/faq',
+    renderMode: RenderMode.Server,
   },
   {
     path: '**',

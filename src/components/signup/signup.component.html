@@ -20,7 +20,9 @@
       <div class="__formcontrol_status__">ok</div>
     </div>
 
-    <ep-form [form]="fs.currentFormFields()"></ep-form>
+    @defer (hydrate on hover) {
+      <ep-form [form]="fs.currentFormFields()"></ep-form>
+    }
 
     <!-- Confirm Password Field -->
     <div class="__form_control_container__">

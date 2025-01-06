@@ -9,7 +9,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { FormService } from '../services/form.service';
-import { fromEvent, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ButtonService } from '../services/button.service';
 
 /**
@@ -49,9 +49,6 @@ export class ButtonDirective implements OnInit, OnDestroy {
       
     }
 
-    
-
-    
   }
 
   ngOnDestroy() {

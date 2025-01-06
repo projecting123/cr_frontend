@@ -9,7 +9,7 @@ import { CR_APP_CONFIG } from '../tokens/app.token';
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly app = inject(CR_APP_CONFIG);
-  public isAuthorizedSubject = new BehaviorSubject<boolean | null>(null);
+  public readonly isAuthorizedSubject = new BehaviorSubject<boolean | null>(null);
   constructor() {}
 
   /**
@@ -17,7 +17,7 @@ export class AuthService {
    * Upon successful logout, the user is notified, and the form is reset.
    */
   logout() {
-    return this.http.get('http://localhost:4000/api/logout', {
+    return this.http.get('http://localhost:4500/api/logout', {
       withCredentials: true,
     });
   }
@@ -58,7 +58,7 @@ export class AuthService {
 
     return this.http
       .get<{ isAuthorized: boolean }>(
-        'http://localhost:4000/api/get_auth_status',
+        'http://localhost:4500/api/get_auth_status',
         { headers: { authCookie: this.getAuthToken_SSR()! } }
       )
       .pipe(
@@ -72,18 +72,16 @@ export class AuthService {
    * On the client, the request is sent with the `withCredentials` flag set to true.
    * On the server, the request is sent with the `authCookie` header set to the value of the `CR_ID` cookie.
    */
-  getAuthUserInfo() {
-    if (!this.app.isServer) {
-      const info = localStorage.getItem('userInfo');
-      if(info) return of(JSON.parse(info));
-      return this.http.get('http://localhost:4000/api/get_user_info', {
-        withCredentials: true,
-      });
-    }
-    else{
-      return this.http.get('http://localhost:4000/api/get_user_info', {
+  getAuthUserInfo(): Observable<any> {
+    if(this.app.isServer){
+      return this.http.get('http://localhost:4500/api/get_user_info', {
         headers: { authCookie: this.getAuthToken_SSR()! }
       });
     }
+    const user = localStorage.getItem('user');
+    if(user) return of(JSON.parse(user));
+    return this.http.get('http://localhost:4500/api/get_user_info', {
+      withCredentials: true
+    });
   }
 }

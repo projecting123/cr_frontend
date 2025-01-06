@@ -22,7 +22,7 @@ form{
     background-color: var(--form_background_color);
     padding: 1rem 0;
     border-radius: 4px;
-    box-shadow: 0 0 10px 2px var(--form_shadow_color);
+    box-shadow: 0 0 10px 2px var(--form_button_color);
     transition: all 0.2s ease-in-out;
 }
 

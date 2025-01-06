@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformServer } from '@angular/common';
 import { inject, InjectionToken, PLATFORM_ID, REQUEST } from '@angular/core';
 
 export const CR_APP_CONFIG = new InjectionToken('app.config', {
@@ -7,9 +7,10 @@ export const CR_APP_CONFIG = new InjectionToken('app.config', {
     const platform = inject(PLATFORM_ID);
     const request = inject(REQUEST);
     const doc = inject(DOCUMENT);
-    const isServer = platform === 'server';
-    const documentObj = platform === 'server' ? doc : document;
-    const requestObj = platform === 'server' ? request : null;
+    const isServer = isPlatformServer(platform);
+    const isBrowser = !isServer;
+    const documentObj = isPlatformServer(platform) ? doc : document;
+    const requestObj = isPlatformServer(platform) ? request : null;
     /**
      * Finds the value of the given cookie name from the browser's document object.
      * @param cookieName The name of the cookie to find.
@@ -24,6 +25,7 @@ export const CR_APP_CONFIG = new InjectionToken('app.config', {
       }
 
     return {
+      isBrowser,
       isServer,
       documentObj,
       requestObj,

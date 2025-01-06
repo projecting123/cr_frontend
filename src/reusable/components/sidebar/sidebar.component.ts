@@ -5,21 +5,20 @@ import {
   Renderer2,
   signal,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavlinkDirective } from '../../../directives/navlink.directive';
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  imports: [RouterLink, NavlinkDirective],
+  imports: [RouterLink, NavlinkDirective, RouterLinkActive],
 })
 export class SidebarComponent {
   private readonly renderer = inject(Renderer2);
   private readonly hostElement = inject(ElementRef);
-  readonly isSidebarOpen = signal(true);
+  private readonly isSidebarOpen = signal(true);
   constructor() {}
-  ngOnInit() {}
   toggleSidebar() {
     this.isSidebarOpen.set(!this.isSidebarOpen());
     if (!this.isSidebarOpen())

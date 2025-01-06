@@ -1,7 +1,4 @@
-// create a custom css config token
-import { inject, InjectionToken } from '@angular/core';
-import { CR_APP_CONFIG } from './app.token';
-
+import { InjectionToken } from '@angular/core';
 export const CR_CSS_CONFIG = new InjectionToken('custom.css.config', {
   providedIn: 'root',
   factory: () => {
@@ -19,7 +16,7 @@ export const CR_CSS_CONFIG = new InjectionToken('custom.css.config', {
               }
               
         .ripple_targetEl:hover {
-              background-color: rgba(0, 92, 187, 0.1);
+              background-color: rgba(0, 92, 187, 0.15);
               }
         `;
 

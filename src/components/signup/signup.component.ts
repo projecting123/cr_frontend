@@ -29,7 +29,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
   readonly fs = inject(FormService);
   private readonly route = inject(ActivatedRoute);
-  constructor() {}
 
   ngOnInit() {
     const pathSubscription = this.route.url.subscribe((url) => {

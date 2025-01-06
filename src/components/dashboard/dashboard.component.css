@@ -1,11 +1,13 @@
 :host{
     position: relative;
 }
+
 .__dashboard__{
     display: flex;
-    flex-direction: column;
+    width: 100%;;
 }
 
-sidebar{
-    grid-column: 1/3;
+.__dashboard_content__{
+    width: 100%;
+    padding: 0.4rem;
 }

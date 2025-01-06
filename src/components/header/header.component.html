@@ -4,15 +4,7 @@
       ><img src="/favicon.ico" alt="Website Logo" class="__logo__"
     /></a>
   </div>
-  <div>
-    <a
-      aria-label="Courses page"
-      routerLink="/courses"
-      routerLinkActive="active_link"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >Courses</a
-    >
-  </div>
+  <div><a routerLink="/about" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" navLink>About</a></div>
 </div>
 
 <div class="__right_nav__">
@@ -23,6 +15,7 @@
       routerLink="/signup"
       routerLinkActive="active_link"
       [routerLinkActiveOptions]="{ exact: true }"
+      navLink
       >Signup</a
     >
   </div>
@@ -33,6 +26,7 @@
       routerLink="/login"
       routerLinkActive="active_link"
       [routerLinkActiveOptions]="{ exact: true }"
+      navLink
     >
       Login
     </a>

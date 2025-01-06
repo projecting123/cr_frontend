@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { CourseCardComponent } from '../../reusable/components/course-card/card.component';
+import { CourseCardComponent } from '../../../reusable/components/course-card/card.component';
 
 @Component({
-    selector: 'app-courses',
+    selector: 'dashboard-courses',
     templateUrl: './courses.component.html',
     styleUrls: ['./courses.component.css'],
     imports: [CourseCardComponent]
 })
-export class CoursesComponent {}
+export class CoursesPage {
+}

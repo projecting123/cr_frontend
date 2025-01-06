@@ -1,4 +1,3 @@
-// create a form service
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormValidator } from '../validators/form.validator';
@@ -42,7 +41,7 @@ export class FormService {
     this.isSubmittingForm.set(true);
     delete this.currentFormFields().value.confirmPassword;
     return this.http.post(
-      'http://localhost:4000/api/signup',
+      'http://localhost:4500/api/signup',
       this.currentFormFields().value
     );
   }
@@ -50,7 +49,7 @@ export class FormService {
   login() {
     this.isSubmittingForm.set(true);
     return this.http.post(
-      'http://localhost:4000/api/login',
+      'http://localhost:4500/api/login',
       this.currentFormFields().value,
       { withCredentials: true }
     );

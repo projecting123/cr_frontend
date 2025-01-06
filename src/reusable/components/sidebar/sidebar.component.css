@@ -1,6 +1,7 @@
 :host{
     transition: all 0.2s ease-in-out;
-    background-color: rgba(5, 118, 138, 0.3);
+    background-color: var(--dashboard_color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 200px;
     height: calc(100vh - 6rem);
     left: 0;
