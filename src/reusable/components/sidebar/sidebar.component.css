@@ -1,32 +1,64 @@
-:host{
+:host {
     transition: all 0.2s ease-in-out;
     background-color: var(--dashboard_color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
     height: calc(100vh - 6rem);
-    left: 0;
     display: flex;
     flex-direction: column;
     padding: 1rem;
     justify-content: space-between;
 }
 
-.__top_items__{
+:host.closed {
+    transform: translateX(-88%);
+}
+
+.__top_items__ {
     display: flex;
     flex-direction: column;
+}
+
+.__top_items__ div {
+    display: flex;
     flex: 1;
 }
 
-.__top_items_container__{
+.__top_items__ div a {
+    flex: 1;
+}
+
+.__sidebar__ {
     display: flex;
+    position: relative;
+    flex: 1;
+}
+
+.__sidebar_links__ {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    flex: 1;
     gap: 0.5rem;
 }
 
-button{
+.__bottom_items__ div {
+    display: flex;
+}
+
+.__bottom_items__ div a {
+    flex: 1;
+}
+
+button {
     color: white;
 }
 
-:host.closed{
-    transform: translateX(-88%);
+.__toggle_button__{
+    display: flex;
+}
+
+.__toggle_button__ button{
+    position: absolute;
+    right: 0.5rem;
+    align-self: center;
 }

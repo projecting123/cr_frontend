@@ -1,15 +1,25 @@
-<div class="__top_items_container__">
-  <div class="__top_items__">
-    <div><a routerLink="./courses" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" navLink>Courses</a></div>
-    <div><a routerLink="./quiz" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" navLink>Quiz</a></div>
-    <div><a routerLink="./notification" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" navLink>Notification</a></div>
-    <div><a routerLink="./materials" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" navLink>Materials</a></div>
+<div class="__sidebar__">
+  <div class="__sidebar_links__">
+    <div class="__top_items__">
+      <div><a routerLink="./" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
+          crLink><ng-icon size="20" name="matHomeOutline"></ng-icon>Home</a>
+      </div>
+      <div><a routerLink="./courses" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
+          crLink><ng-icon size="20" name="matBookOutline"></ng-icon>Courses</a></div>
+      <div><a routerLink="./quiz" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
+          crLink>
+         <ng-icon size="20" name="matQuizOutline"></ng-icon>Quiz</a></div>
+      <div><a routerLink="./notification" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
+          crLink><ng-icon size="20" name="matNotificationsOutline"></ng-icon>Notification</a></div>
+      <div><a routerLink="./materials" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
+          crLink><ng-icon size="20" name="matPictureAsPdfOutline"></ng-icon>Materials</a></div>
+    </div>
+    <div class="__bottom_items__">
+      <div><a routerLink="./settings" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
+          crLink><ng-icon size="20" name="matSettingsOutline"></ng-icon>Settings</a></div>
+      <div><a routerLink="./faq" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
+          crLink><ng-icon size="20" name="matQuestionMarkOutline"></ng-icon>FAQ</a></div>
+    </div>
   </div>
-  <div class="__arrow_icons__"><button
-      (click)="toggleSidebar()"></button></div>
-</div>
-
-<div class="__bottom_items__">
-  <div><a routerLink="./settings" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" navLink>Settings</a></div>
-  <div><a routerLink="./faq" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" navLink>FAQ</a></div>
+  <div class="__toggle_button__"><button type="button" aria-label="Toggle Sidebar" (click)="toggleSidebar()">to</button></div>
 </div>

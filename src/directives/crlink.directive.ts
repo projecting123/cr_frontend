@@ -10,10 +10,13 @@ import { fromEvent, Subscription } from 'rxjs';
 import { CR_CSS_CONFIG } from '../tokens/customcss.token';
 import { CR_APP_CONFIG } from '../tokens/app.token';
 
+/**
+ * This directive creates ripple effect on click of a link.
+ */
 @Directive({
-  selector: '[navLink]',
+  selector: '[crLink]',
 })
-export class NavlinkDirective implements OnInit, OnDestroy {
+export class CRLinkDirective implements OnInit, OnDestroy {
   public readonly subscription: Subscription = new Subscription();
   private readonly renderer = inject(Renderer2);
   private readonly el = inject(ElementRef);

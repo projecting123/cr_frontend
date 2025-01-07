@@ -2,11 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
-import { NavlinkDirective } from '../../directives/navlink.directive';
+import { CRLinkDirective } from '../../directives/crlink.directive';
 
 @Component({
   selector: 'cr-header',
-  imports: [RouterLink, RouterLinkActive, NavlinkDirective],
+  imports: [RouterLink, RouterLinkActive, CRLinkDirective],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })

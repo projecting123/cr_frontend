@@ -4,7 +4,7 @@
       ><img src="/favicon.ico" alt="Website Logo" class="__logo__"
     /></a>
   </div>
-  <div><a routerLink="/about" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" navLink>About</a></div>
+  <div><a routerLink="/about" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink>About</a></div>
 </div>
 
 <div class="__right_nav__">
@@ -15,7 +15,7 @@
       routerLink="/signup"
       routerLinkActive="active_link"
       [routerLinkActiveOptions]="{ exact: true }"
-      navLink
+      crLink
       >Signup</a
     >
   </div>
@@ -26,12 +26,12 @@
       routerLink="/login"
       routerLinkActive="active_link"
       [routerLinkActiveOptions]="{ exact: true }"
-      navLink
+      crLink
     >
       Login
     </a>
   </div>
   } @if (isAuthorized()) {
-  <div><a (click)="logout()" navLink>Logout</a></div>
+  <div><a (click)="logout()" crLink>Logout</a></div>
   }
 </div>
