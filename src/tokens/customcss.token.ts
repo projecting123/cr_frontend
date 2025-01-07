@@ -4,8 +4,7 @@ export const CR_CSS_CONFIG = new InjectionToken('custom.css.config', {
   factory: () => {
     const ripple_targetEl_CSS_Rule = `
         .ripple_targetEl {
-              display: flex;
-              gap: 0.5rem;
+              display: inline-flex;
               align-items: center;
               position: relative;
               overflow: hidden;

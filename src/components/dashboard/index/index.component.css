@@ -1,0 +1,22 @@
+:host{
+    display: flex;
+    padding: 0.4rem;
+}
+
+.__user_name_email__{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 92, 187, 0.3);
+    background-color: var(--dashboard_color);
+    color: rgb(0, 80, 150);
+}
+
+.__user_name_email__ small{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    opacity: 0.9;
+}

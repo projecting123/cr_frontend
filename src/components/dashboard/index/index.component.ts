@@ -1,27 +1,39 @@
-import { Component, inject, signal } from '@angular/core';
-import { TransferStateService } from '../../../services/transferstate.service';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { AuthUserInfo } from '../../../interfaces/auth';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { CR_APP_CONFIG } from '../../../tokens/app.token';
-
+import {matEmailOutline} from '@ng-icons/material-icons/outline'
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { routeAnimation } from '../../../app/animation';
+import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'cr-index-dash',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
+  imports: [NgIcon],
+  host: { '[@routeAnimation]': '' },
+  animations: [routeAnimation],
+  viewProviders: [provideIcons({ matEmailOutline })],
 })
-export class IndexPage {
+export class IndexPage implements OnInit, OnDestroy{
   readonly user = signal<null | AuthUserInfo>(null);
-  private readonly ts = inject(TransferStateService);
   private readonly route = inject(ActivatedRoute);
   private readonly app = inject(CR_APP_CONFIG);
+  private readonly userService = inject(UserService);
+  private readonly subscription: Subscription = new Subscription();
   async ngOnInit() {
+    const res = await firstValueFrom(this.route.data);
     if (this.app.isServer) {
-      const res = await firstValueFrom(this.route.data);
       this.user.set(res['auth']);
     } else {
-      const user = this.ts.getUser(this.ts.authUserInfoKey);
-      this.user.set(user);
+      const userSubscription = this.userService.userSubject.subscribe((user) => this.user.set(user));
+      this.subscription.add(userSubscription);
     }
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

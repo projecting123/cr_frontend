@@ -23,6 +23,7 @@ export class HeaderComponent {
     const response = this.auth.logout();
     const logoutSubscription = response.subscribe({
       next: () => {
+        localStorage.removeItem('user');
         this.router.navigate(['/login']);
       },
     });
