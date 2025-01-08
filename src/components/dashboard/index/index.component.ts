@@ -7,11 +7,12 @@ import {matEmailOutline} from '@ng-icons/material-icons/outline'
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { routeAnimation } from '../../../app/animation';
 import { UserService } from '../../../services/user.service';
+import { CardComponent } from "../../../reusable/components/card/card.component";
 @Component({
   selector: 'cr-index-dash',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
-  imports: [NgIcon],
+  imports: [NgIcon, CardComponent],
   host: { '[@routeAnimation]': '' },
   animations: [routeAnimation],
   viewProviders: [provideIcons({ matEmailOutline })],

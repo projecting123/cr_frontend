@@ -1,6 +1,8 @@
 :host{
     display: flex;
     padding: 0.4rem;
+    position: relative;
+    z-index: 0;
 }
 
 .__user_name_email__{
@@ -9,9 +11,10 @@
     flex-direction: column;
     padding: 0.2rem 0.6rem;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 92, 187, 0.3);
-    background-color: var(--dashboard_color);
+    box-shadow: 4px 1px 4px rgba(0, 92, 187, 0.3);
+    background-color: rgba(0, 92, 187, 0.3);
     color: rgb(0, 80, 150);
+    align-items: center;
 }
 
 .__user_name_email__ small{

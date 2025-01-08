@@ -13,16 +13,20 @@ import {
   matBookOutline,
   matQuizOutline,
   matPictureAsPdfOutline,
+  matArrowCircleRightOutline,
+  matArrowCircleLeftOutline,
 } from '@ng-icons/material-icons/outline';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CRLinkDirective } from '../../../directives/crlink.directive';
+import { sidebarAnimation } from '../../../app/animation';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  imports: [RouterLink, CRLinkDirective, RouterLinkActive, NgIcon],
+  imports: [RouterLink, CRLinkDirective, RouterLinkActive, NgIcon, NgIf, NgClass],
   viewProviders: [
     provideIcons({
       matHomeOutline,
@@ -32,16 +36,22 @@ import { CRLinkDirective } from '../../../directives/crlink.directive';
       matBookOutline,
       matQuizOutline,
       matPictureAsPdfOutline,
+      matArrowCircleRightOutline,
+      matArrowCircleLeftOutline,
     }),
   ],
+
+  host: {
+    '[class]': 'isExpanded() ? "expanded" : ""',
+    '[@sidebarAnimation]': 'isExpanded() ? "expanded" : "collapsed"',
+  },
+  animations: [sidebarAnimation],
 })
-export class SidebarComponent {
+export class SidebarComponent{
   private readonly renderer = inject(Renderer2);
   private readonly hostElement = inject(ElementRef);
-  private readonly isSidebarOpen = signal(true);
+  readonly isExpanded = signal(false);
   toggleSidebar() {
-    this.isSidebarOpen.set(!this.isSidebarOpen());
-    if(this.isSidebarOpen()) this.renderer.removeClass(this.hostElement.nativeElement, 'closed');
-    else this.renderer.addClass(this.hostElement.nativeElement, 'closed');
+    this.isExpanded.set(!this.isExpanded());
   }
 }

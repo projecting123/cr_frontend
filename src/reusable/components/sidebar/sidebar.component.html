@@ -1,25 +1,34 @@
 <div class="__sidebar__">
   <div class="__sidebar_links__">
     <div class="__top_items__">
-      <div><a routerLink="./" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
-          crLink><ng-icon size="20" name="matHomeOutline"></ng-icon>Home</a>
+      <div><a routerLink="./" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
+          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22" name="matHomeOutline"></ng-icon><span
+            *ngIf="isExpanded()">Home</span></a>
       </div>
-      <div><a routerLink="./courses" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
-          crLink><ng-icon size="20" name="matBookOutline"></ng-icon>Courses</a></div>
-      <div><a routerLink="./quiz" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
-          crLink>
-         <ng-icon size="20" name="matQuizOutline"></ng-icon>Quiz</a></div>
+      <div><a routerLink="./courses" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
+          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22" name="matBookOutline"></ng-icon><span
+            *ngIf="isExpanded()">Courses</span></a></div>
+      <div><a routerLink="./quiz" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
+          [ngClass]="isExpanded() ? 'links_on_expanded' : ''">
+          <ng-icon size="22" name="matQuizOutline"></ng-icon><span *ngIf="isExpanded()">Quiz</span></a></div>
       <div><a routerLink="./notification" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
-          crLink><ng-icon size="20" name="matNotificationsOutline"></ng-icon>Notification</a></div>
-      <div><a routerLink="./materials" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
-          crLink><ng-icon size="20" name="matPictureAsPdfOutline"></ng-icon>Materials</a></div>
+          crLink [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22"
+            name="matNotificationsOutline"></ng-icon><span *ngIf="isExpanded()">Notification</span></a></div>
+      <div><a routerLink="./materials" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
+          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22"
+            name="matPictureAsPdfOutline"></ng-icon><span *ngIf="isExpanded()">Materials</span></a></div>
     </div>
     <div class="__bottom_items__">
-      <div><a routerLink="./settings" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
-          crLink><ng-icon size="20" name="matSettingsOutline"></ng-icon>Settings</a></div>
-      <div><a routerLink="./faq" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
-          crLink><ng-icon size="20" name="matQuestionMarkOutline"></ng-icon>FAQ</a></div>
+      <div><a routerLink="./settings" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
+          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22"
+            name="matSettingsOutline"></ng-icon><span *ngIf="isExpanded()">Settings</span></a>
+      </div>
+      <div><a routerLink="./faq" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
+          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22"
+            name="matQuestionMarkOutline"></ng-icon><span *ngIf="isExpanded()">FAQ</span></a>
+      </div>
     </div>
   </div>
-  <div class="__toggle_button__"><button type="button" aria-label="Toggle Sidebar" (click)="toggleSidebar()">to</button></div>
+  <div class="__toggle_button__"><a aria-label="Toggle Sidebar" (click)="toggleSidebar()"><ng-icon size="24"
+        [name]="isExpanded() ? 'matArrowCircleLeftOutline' : 'matArrowCircleRightOutline'"></ng-icon></a></div>
 </div>

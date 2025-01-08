@@ -64,7 +64,7 @@ export class CRLinkDirective implements OnInit, OnDestroy {
     rippleInnerSpan.style.transition = `all 0.4s ease-in-out`;
     rippleInnerSpan.style.transform = `scale(0)`;
     rippleInnerSpan.style.borderRadius = `50%`;
-    rippleInnerSpan.style.backgroundColor = `rgba(0, 92, 187, 0.25)`;
+    rippleInnerSpan.style.backgroundColor = `rgba(0, 92, 187, 0.3)`;
 
     rippleInnerSpan.classList.add('ripple_effect');
     const scaleTimeout = setTimeout(() => (rippleInnerSpan.style.transform = `scale(${diameter * 2.5})`),1);

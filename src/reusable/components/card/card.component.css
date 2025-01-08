@@ -1,0 +1,8 @@
+.cr-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 2px var(--form_button_color);
+}

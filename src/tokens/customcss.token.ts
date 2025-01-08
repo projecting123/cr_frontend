@@ -11,8 +11,6 @@ export const CR_CSS_CONFIG = new InjectionToken('custom.css.config', {
               text-decoration: none;
               cursor: pointer;
               color: rgb(0, 92, 187);
-              padding: 0.6rem 1rem;
-              border-radius: 50px;
               transition: all 0.1s ease-in-out;
               }
               

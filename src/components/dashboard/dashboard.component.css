@@ -8,5 +8,6 @@
 }
 
 .__dashboard_content__{
+    flex: 1;
     width: 100%;
 }
