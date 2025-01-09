@@ -1,4 +1,4 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormService } from '../../services/form.service';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,6 @@ import { FormButtonDirective } from '../../directives/formbutton.directive';
   imports: [ReactiveFormsModule, FormComponent, FormButtonDirective],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent {
   private readonly subscription: Subscription = new Subscription();

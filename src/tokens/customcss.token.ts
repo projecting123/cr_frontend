@@ -6,6 +6,7 @@ export const CR_CSS_CONFIG = new InjectionToken('custom.css.config', {
         .ripple_targetEl {
               display: inline-flex;
               align-items: center;
+              background-color: transparent;
               position: relative;
               overflow: hidden;
               text-decoration: none;

@@ -1,7 +1,7 @@
 .__form_container__ {
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 80vh;
     justify-content: center;
     align-items: center;
 }
@@ -39,6 +39,9 @@ button{
     transition: all 0.2s ease-in-out;
 }
 
+button:disabled{
+    cursor: not-allowed;
+}
 .__form_control_container__{
     display: flex;
     align-items: center;

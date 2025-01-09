@@ -1,13 +1,15 @@
 import { DOCUMENT } from '@angular/common';
 import { inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { SnackbarOptions } from '../interfaces/settings';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SettingsService {
     private readonly document = inject(DOCUMENT);
-    private readonly renderer: Renderer2 
+    private readonly renderer: Renderer2;
+    readonly openSidebarSubject = new BehaviorSubject<boolean>(false);
     constructor(private rendererFactory: RendererFactory2) { 
         this.renderer = this.rendererFactory.createRenderer(null, null);
     }

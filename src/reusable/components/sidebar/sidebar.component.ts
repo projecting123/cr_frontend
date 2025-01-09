@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  inject,
-  Renderer2,
-  signal,
-} from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import {
   matHomeOutline,
   matNotificationsOutline,
@@ -21,12 +15,21 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CRLinkDirective } from '../../../directives/crlink.directive';
 import { sidebarAnimation } from '../../../app/animation';
 import { NgClass, NgIf } from '@angular/common';
+import { SettingsService } from '../../../services/settings.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  imports: [RouterLink, CRLinkDirective, RouterLinkActive, NgIcon, NgIf, NgClass],
+  imports: [
+    RouterLink,
+    CRLinkDirective,
+    RouterLinkActive,
+    NgIcon,
+    NgIf,
+    NgClass,
+  ],
   viewProviders: [
     provideIcons({
       matHomeOutline,
@@ -47,11 +50,19 @@ import { NgClass, NgIf } from '@angular/common';
   },
   animations: [sidebarAnimation],
 })
-export class SidebarComponent{
-  private readonly renderer = inject(Renderer2);
-  private readonly hostElement = inject(ElementRef);
+export class SidebarComponent implements OnInit, OnDestroy{
+  private readonly settings = inject(SettingsService);
+  private readonly subscription = new Subscription();
   readonly isExpanded = signal(false);
-  toggleSidebar() {
-    this.isExpanded.set(!this.isExpanded());
+  
+  ngOnInit() {
+    const sidebarSubscription = this.settings.openSidebarSubject.subscribe((value) =>
+      this.isExpanded.set(value)
+    );
+    this.subscription.add(sidebarSubscription);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

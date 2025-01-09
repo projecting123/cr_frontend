@@ -53,12 +53,3 @@
 .__bottom_items__ div {
     display: flex;
 }
-
-.__toggle_button__ {
-    position: absolute;
-    align-self: center;
-    right: -1rem;
-}
-
-/*
-*/

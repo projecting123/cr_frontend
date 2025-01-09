@@ -21,14 +21,30 @@ a{
 
 .__right_nav__{
     display: flex;
-    gap: 1rem;
+}
+
+a[crLink]{
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
 }
 
 .active_link{
-    color: #3D3BF3;
+    color: #091c6e;
+    background-color: rgba(0, 92, 187, 0.2);
 }
 
 .__logo__container__ a img{
     width: 2.5rem;
     height: 2.5rem;
+}
+
+button{
+    background-color: transparent;
+}
+
+button[crLink]{
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
 }

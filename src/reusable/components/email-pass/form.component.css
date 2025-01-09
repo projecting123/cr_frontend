@@ -1,3 +1,4 @@
+@import '../../css/form.component.css';
 :host{
     display: flex;
     flex-direction: column;

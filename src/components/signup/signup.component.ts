@@ -23,7 +23,6 @@ import { FormButtonDirective } from '../../directives/formbutton.directive';
   ],
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class SignupComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();

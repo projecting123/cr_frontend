@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormValidator } from '../validators/form.validator';
-import { Observer, Subject } from 'rxjs';
+import { BehaviorSubject, Observer, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SettingsService } from './settings.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class FormService {
   formType = signal<string | null>(null);
-  public readonly isSubmittingForm = signal<boolean>(false);
+  readonly isSubmittingForm = new Subject<boolean>();
   private readonly settings = inject(SettingsService);
   public readonly formSubmitted = new Subject();
   private readonly http = inject(HttpClient);
@@ -38,7 +38,7 @@ export class FormService {
   });
 
   signup() {
-    this.isSubmittingForm.set(true);
+    this.isSubmittingForm.next(true);
     delete this.currentFormFields().value.confirmPassword;
     return this.http.post(
       'http://localhost:4500/api/signup',
@@ -47,7 +47,7 @@ export class FormService {
   }
 
   login() {
-    this.isSubmittingForm.set(true);
+    this.isSubmittingForm.next(true);
     return this.http.post(
       'http://localhost:4500/api/login',
       this.currentFormFields().value,
@@ -61,7 +61,7 @@ export class FormService {
    * multiple times.
    */
   modifyFormAfterSubmission(): void {
-    this.isSubmittingForm.set(false);
+    this.isSubmittingForm.next(false);
     this.currentFormFields().reset();
     this.formSubmitted.next(true);
   }
