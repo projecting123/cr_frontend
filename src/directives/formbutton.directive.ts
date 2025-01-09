@@ -15,28 +15,28 @@ import { fromEvent, Subscription } from 'rxjs';
 export class FormButtonDirective implements OnInit, OnDestroy {
   private readonly fs = inject(FormService);
   private readonly bs = inject(ButtonService);
-  private readonly buttonEl = inject(ElementRef) as ElementRef<HTMLButtonElement>;
+  private readonly buttonEl = inject(ElementRef).nativeElement as HTMLButtonElement;
   private readonly subscription: Subscription = new Subscription();
 
   ngOnInit() {
     this.bs.setButtonDisability(
-      this.buttonEl.nativeElement,
+      this.buttonEl,
       this.fs.currentFormFields().invalid
     );
 
     const subscription = this.fs.isSubmittingForm.subscribe((isSubmitting) => {
-      this.bs.setButtonDisability(this.buttonEl.nativeElement, isSubmitting);
+      this.bs.setButtonDisability(this.buttonEl, isSubmitting);
     });
 
     const statusSubscription = this.fs
       .currentFormFields()
       .statusChanges.subscribe((status) => {
         if (status === 'VALID')
-          this.bs.setButtonDisability(this.buttonEl.nativeElement, false);
-        else this.bs.setButtonDisability(this.buttonEl.nativeElement, true);
+          this.bs.setButtonDisability(this.buttonEl, false);
+        else this.bs.setButtonDisability(this.buttonEl, true);
       });
 
-    const formSubmit = fromEvent(this.buttonEl.nativeElement, 'click');
+    const formSubmit = fromEvent(this.buttonEl, 'click');
     const formSubmitSubscription = formSubmit.subscribe((event: any) => {
       if (this.fs.formType() === 'signup')
         this.fs.signup().subscribe(this.fs.signupObserver);

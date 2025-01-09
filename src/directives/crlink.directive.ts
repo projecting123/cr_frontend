@@ -19,11 +19,10 @@ import { CR_APP_CONFIG } from '../tokens/app.token';
 export class CRLinkDirective implements OnInit, OnDestroy {
   public readonly subscription: Subscription = new Subscription();
   private readonly renderer = inject(Renderer2);
-  private readonly el = inject(ElementRef);
-  public readonly cssConfig = inject(CR_CSS_CONFIG);
   public readonly appConfig = inject(CR_APP_CONFIG);
-  public readonly link = this.el.nativeElement as HTMLElement;
-  public readonly ripple_span = this.renderer.createElement('span');
+  public readonly cssConfig = inject(CR_CSS_CONFIG);
+  private readonly el = inject(ElementRef).nativeElement as HTMLAnchorElement | HTMLButtonElement;
+  public readonly ripple_span = this.renderer.createElement('span') as HTMLSpanElement;
   timeout!: NodeJS.Timeout;
   ngOnInit(): void {
     const alreadyExistStyleEl = this.appConfig.documentObj.head.querySelector(`#cr_ripple_style`);
@@ -34,9 +33,9 @@ export class CRLinkDirective implements OnInit, OnDestroy {
       this.appConfig.documentObj.head.appendChild(style);
     }
     
-    this.el.nativeElement.classList.add('ripple_targetEl');
-    this.link.appendChild(this.ripple_span);
-    const mousedown$ = fromEvent(this.link, 'mousedown');
+    this.el.classList.add('ripple_targetEl');
+    this.el.appendChild(this.ripple_span);
+    const mousedown$ = fromEvent(this.el, 'mousedown');
     const mousedownSubscription = mousedown$.subscribe(e => this.createRipple(e));
     this.subscription.add(mousedownSubscription);
   }
@@ -49,7 +48,7 @@ export class CRLinkDirective implements OnInit, OnDestroy {
  createRipple(e: any) {
   if(this.timeout) clearTimeout(this.timeout);
    const rippleInnerSpan = document.createElement('span');
-   const targetElRect = this.link.getBoundingClientRect();
+   const targetElRect = this.el.getBoundingClientRect();
    const diameter = Math.max(targetElRect.width, targetElRect.height);
    const x = e.clientX - targetElRect.left;
    const y = e.clientY - targetElRect.top;
@@ -68,7 +67,7 @@ export class CRLinkDirective implements OnInit, OnDestroy {
       rippleInnerSpan.style.transform = `scale(${diameter * 2.5})`;
     });
     
-    const mouseUp$ = fromEvent(this.link, 'mouseup');
+    const mouseUp$ = fromEvent(this.el, 'mouseup');
     const mouseUpSubscription = mouseUp$.subscribe(() => {
       rippleInnerSpan.style.opacity = '0';
       this.timeout = setTimeout(() => rippleInnerSpan.remove(), 400)
