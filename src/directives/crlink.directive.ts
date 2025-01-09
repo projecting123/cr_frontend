@@ -24,6 +24,7 @@ export class CRLinkDirective implements OnInit, OnDestroy {
   public readonly appConfig = inject(CR_APP_CONFIG);
   public readonly link = this.el.nativeElement as HTMLElement;
   public readonly ripple_span = this.renderer.createElement('span');
+  timeout!: NodeJS.Timeout;
   ngOnInit(): void {
     const alreadyExistStyleEl = this.appConfig.documentObj.head.querySelector(`#cr_ripple_style`);
     if(!alreadyExistStyleEl){
@@ -38,8 +39,6 @@ export class CRLinkDirective implements OnInit, OnDestroy {
     const mousedown$ = fromEvent(this.link, 'mousedown');
     const mousedownSubscription = mousedown$.subscribe(e => this.createRipple(e));
     this.subscription.add(mousedownSubscription);
-    
-    
   }
   
   /**
@@ -48,31 +47,31 @@ export class CRLinkDirective implements OnInit, OnDestroy {
    * of the ripple effect.
   */
  createRipple(e: any) {
-   const alreadyExistRipple = document.querySelector('.ripple_effect');
-   if (alreadyExistRipple) alreadyExistRipple.remove();
-   const rippleInnerSpan = this.renderer.createElement('span');
-    this.ripple_span.appendChild(rippleInnerSpan);
-    const targetElRect = this.link.getBoundingClientRect();
-    const diameter = Math.max(targetElRect.width, targetElRect.height);
-    const x = e.clientX - targetElRect.left;
-    const y = e.clientY - targetElRect.top;
-    rippleInnerSpan.style.position = 'absolute';
-    rippleInnerSpan.style.top = `${y}px`;
-    rippleInnerSpan.style.left = `${x}px`;
-    rippleInnerSpan.style.width = `1px`;
-    rippleInnerSpan.style.height = `1px`;
-    rippleInnerSpan.style.transition = `all 0.4s ease-in-out`;
-    rippleInnerSpan.style.transform = `scale(0)`;
-    rippleInnerSpan.style.borderRadius = `50%`;
-    rippleInnerSpan.style.backgroundColor = `rgba(0, 92, 187, 0.3)`;
-    rippleInnerSpan.classList.add('ripple_effect');
-    requestAnimationFrame(() => {
+  if(this.timeout) clearTimeout(this.timeout);
+   const rippleInnerSpan = document.createElement('span');
+   const targetElRect = this.link.getBoundingClientRect();
+   const diameter = Math.max(targetElRect.width, targetElRect.height);
+   const x = e.clientX - targetElRect.left;
+   const y = e.clientY - targetElRect.top;
+   rippleInnerSpan.style.position = 'absolute';
+   rippleInnerSpan.style.top = `${y}px`;
+   rippleInnerSpan.style.left = `${x}px`;
+   rippleInnerSpan.style.width = `1px`;
+   rippleInnerSpan.style.height = `1px`;
+   rippleInnerSpan.style.transition = `all 0.4s ease-in-out`;
+   rippleInnerSpan.style.transform = `scale(0)`;
+   rippleInnerSpan.style.borderRadius = `50%`;
+   rippleInnerSpan.style.backgroundColor = `rgba(0, 92, 187, 0.3)`;
+   rippleInnerSpan.classList.add('ripple_effect');
+   this.ripple_span.appendChild(rippleInnerSpan);
+   requestAnimationFrame(() => {
       rippleInnerSpan.style.transform = `scale(${diameter * 2.5})`;
     });
     
     const mouseUp$ = fromEvent(this.link, 'mouseup');
     const mouseUpSubscription = mouseUp$.subscribe(() => {
       rippleInnerSpan.style.opacity = '0';
+      this.timeout = setTimeout(() => rippleInnerSpan.remove(), 400)
     });
     this.subscription.add(mouseUpSubscription);
   }

@@ -53,3 +53,7 @@
 .__bottom_items__ div {
     display: flex;
 }
+
+.active_link {
+    background-color: rgba(0, 92, 187, 0.2);
+}
