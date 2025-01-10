@@ -17,6 +17,7 @@ import { sidebarAnimation } from '../../../app/animation';
 import { NgClass, NgIf } from '@angular/common';
 import { SettingsService } from '../../../services/settings.service';
 import { Subscription } from 'rxjs';
+import { TooltipDirective } from '../../../directives/tooltip.directive';
 
 @Component({
   selector: 'sidebar',
@@ -25,6 +26,7 @@ import { Subscription } from 'rxjs';
   imports: [
     RouterLink,
     CRLinkDirective,
+    TooltipDirective,
     RouterLinkActive,
     NgIcon,
     NgIf,
@@ -56,13 +58,53 @@ export class SidebarComponent implements OnInit, OnDestroy{
   readonly isExpanded = signal(false);
   
   ngOnInit() {
-    const sidebarSubscription = this.settings.openSidebarSubject.subscribe((value) =>
-      this.isExpanded.set(value)
-    );
+    const sidebarSubscription = this.settings.isExpandedSidebar$.subscribe(value => this.isExpanded.set(value));
     this.subscription.add(sidebarSubscription);
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+
+  readonly topLevelLinks = [
+    {
+      name: 'Home',
+      link: './',
+      icon: 'matHomeOutline',
+    },
+    {
+      name: 'Courses',
+      link: './courses',
+      icon: 'matBookOutline',
+    },
+    {
+      name: 'Quiz',
+      link: './quiz',
+      icon: 'matQuizOutline',
+    },
+    {
+      name: 'Materials',
+      link: './materials',
+      icon: 'matPictureAsPdfOutline',
+    },
+    {
+      name: 'Notifications',
+      link: './notifications',
+      icon: 'matNotificationsOutline',
+    },
+  ];
+
+  readonly bottomLevelLinks = [
+    {
+      name: 'Settings',
+      link: './settings',
+      icon: 'matSettingsOutline',
+    },
+    {
+      name: 'FAQ',
+      link: './faq',
+      icon: 'matQuestionMarkOutline',
+    },
+  ];
 }

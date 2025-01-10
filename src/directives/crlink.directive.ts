@@ -40,8 +40,8 @@ export class CRLinkDirective implements OnInit, OnDestroy {
 
     this.el.classList.add('ripple_targetEl');
     this.el.appendChild(this.ripple_span);
-    const mousedown$ = fromEvent(this.el, 'mousedown');
-    const mousedownSubscription = mousedown$.subscribe((e) =>
+    const mousedown$ = fromEvent(this.el, 'pointerdown');
+    const mousedownSubscription = mousedown$.subscribe((e: any) =>
       this.createRipple(e)
     );
     this.subscription.add(mousedownSubscription);
@@ -52,7 +52,7 @@ export class CRLinkDirective implements OnInit, OnDestroy {
    * and adding a CSS rule to the global stylesheet to define the appearance
    * of the ripple effect.
    */
-  createRipple(e: any) {
+  createRipple(e: PointerEvent) {
     if (this.timeout) clearTimeout(this.timeout);
     const rippleInnerSpan = document.createElement('span');
     const targetElRect = this.el.getBoundingClientRect();
@@ -68,13 +68,12 @@ export class CRLinkDirective implements OnInit, OnDestroy {
     rippleInnerSpan.style.transform = `scale(0)`;
     rippleInnerSpan.style.borderRadius = `50%`;
     rippleInnerSpan.style.backgroundColor = `rgba(0, 92, 187, 0.3)`;
-    rippleInnerSpan.classList.add('ripple_effect');
     this.ripple_span.appendChild(rippleInnerSpan);
     requestAnimationFrame(() => {
       rippleInnerSpan.style.transform = `scale(${diameter * 2.5})`;
     });
 
-    const mouseUp$ = fromEvent(this.el, 'mouseup', { once: true });
+    const mouseUp$ = fromEvent(this.el, 'pointerup', { once: true });
     const mouseUpSubscription = mouseUp$.subscribe(() => {
       rippleInnerSpan.style.opacity = '0';
       this.timeout = setTimeout(() => rippleInnerSpan.remove(), 400);

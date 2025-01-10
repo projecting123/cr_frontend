@@ -30,7 +30,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server,
   },
   {
-    path: 'dashboard/notification',
+    path: 'dashboard/notifications',
     renderMode: RenderMode.Server,
   },
   {

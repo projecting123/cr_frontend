@@ -1,32 +1,20 @@
 <div class="__sidebar__">
   <div class="__sidebar_links__">
     <div class="__top_items__">
-      <div><a routerLink="./" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
-          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22" name="matHomeOutline"></ng-icon><span
-            *ngIf="isExpanded()">Home</span></a>
+      @for (item of topLevelLinks; track $index) {
+      <div><a [routerLink]="item.link" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
+          [ngClass]="isExpanded() ? 'links_on_expanded' : ''" crTooltip [tooltipText]="item.name"><ng-icon size="22"
+            [name]="item.icon"></ng-icon><span *ngIf="isExpanded()">{{item.name}}</span></a>
       </div>
-      <div><a routerLink="./courses" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
-          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22" name="matBookOutline"></ng-icon><span
-            *ngIf="isExpanded()">Courses</span></a></div>
-      <div><a routerLink="./quiz" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
-          [ngClass]="isExpanded() ? 'links_on_expanded' : ''">
-          <ng-icon size="22" name="matQuizOutline"></ng-icon><span *ngIf="isExpanded()">Quiz</span></a></div>
-      <div><a routerLink="./notification" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }"
-          crLink [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22"
-            name="matNotificationsOutline"></ng-icon><span *ngIf="isExpanded()">Notification</span></a></div>
-      <div><a routerLink="./materials" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
-          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22"
-            name="matPictureAsPdfOutline"></ng-icon><span *ngIf="isExpanded()">Materials</span></a></div>
+      }
     </div>
     <div class="__bottom_items__">
-      <div><a routerLink="./settings" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
-          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22"
-            name="matSettingsOutline"></ng-icon><span *ngIf="isExpanded()">Settings</span></a>
+      @for (item of bottomLevelLinks; track $index) {
+      <div><a [routerLink]="item.link" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
+          [ngClass]="isExpanded() ? 'links_on_expanded' : ''" crTooltip [tooltipText]="item.name"><ng-icon size="22"
+            [name]="item.icon"></ng-icon><span *ngIf="isExpanded()">{{item.name}}</span></a>
       </div>
-      <div><a routerLink="./faq" routerLinkActive="active_link" [routerLinkActiveOptions]="{ exact: true }" crLink
-          [ngClass]="isExpanded() ? 'links_on_expanded' : ''"><ng-icon size="22"
-            name="matQuestionMarkOutline"></ng-icon><span *ngIf="isExpanded()">FAQ</span></a>
-      </div>
+      }
     </div>
   </div>
 </div>

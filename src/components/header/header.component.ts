@@ -45,9 +45,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   toggleSidebar() {
-    console.log('Before toggle:');
     this.isSidebarExpanded.set(!this.isSidebarExpanded());
-    this.settings.openSidebarSubject.next(this.isSidebarExpanded());
+    this.settings.isExpandedSidebar$.next(this.isSidebarExpanded());
   }
 
   ngOnDestroy(): void {

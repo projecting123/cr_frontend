@@ -63,7 +63,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'notification',
+        path: 'notifications',
         loadComponent: () =>
           import(
             '../components/dashboard/notification/notification.component'

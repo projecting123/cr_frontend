@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SettingsService {
     private readonly document = inject(DOCUMENT);
     private readonly renderer: Renderer2;
-    readonly openSidebarSubject = new BehaviorSubject<boolean>(false);
+    readonly isExpandedSidebar$ = new BehaviorSubject<boolean>(false);
     constructor(private rendererFactory: RendererFactory2) { 
         this.renderer = this.rendererFactory.createRenderer(null, null);
     }
